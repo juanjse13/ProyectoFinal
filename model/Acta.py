@@ -1,4 +1,5 @@
 from model.DetalleCriterio import DetalleCriterio
+from controller.Controlador import Controlador
 
 
 class Acta:
@@ -18,10 +19,20 @@ class Acta:
         self._jurado2 = jurado2
         self._observaciones_generales = ""
         self._detalle_criterio = {}
+        self._agregar_detalles_criterios()
 
     def get_numero(self):
         return self._numero
 
     def set_observaciones_generales(self, observaciones_generales):
         self._observaciones_generales = observaciones_generales
+
+    def _agregar_detalles_criterios(self): #Objeto de tipo controlador que contiene un diccionario con los criterios
+        controlador_obj = Controlador() #Se crea una instancia de tipo controlador
+        lista_criterios = controlador_obj.get_criterios()
+        for posicion in range(0, len(lista_criterios) - 1):
+            self._detalle_criterio[lista_criterios [posicion].get_identificador()] = DetalleCriterio(lista_criterios [posicion]) #Se asocia un detalleCriterio a un Criterio
+
+
+
 
