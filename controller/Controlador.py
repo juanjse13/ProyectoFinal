@@ -5,6 +5,7 @@ from model.Director import Director
 
 
 
+
 class Controlador:
     def __init__(self):
         self._criterios = []
@@ -17,8 +18,8 @@ class Controlador:
 
 
     def _inicializar_criterios(self):
-        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2 ))
-        self._criterios.append(Criterio(1, "Diseño académico y científico del tema", 0.15))
+        self._criteriosa.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2 ))
+        self._criteriosa.append(Criterio(1, "Diseño académico y científico del tema", 0.15))
         self._criterios.append(Criterio(2, "Cumplimiento de los objetivos propuetos", 0.1))
         self._criterios.append(Criterio(3, "Creatividad e innovación de las soluciones y desarrollos propuestos", 0.1))
         self._criterios.append(Criterio(4, "Validez de los resultados y conclusiones", 0.2))
@@ -28,5 +29,8 @@ class Controlador:
 
     def agregar_acta(self, acta_obj):
         self._actas[acta_obj.get_numero()] = acta_obj #Se agrega el acta al diccionario y se le asocia la llave
+
+    def get_criterios(self):
+        return self._criterios
 
 
