@@ -4,8 +4,6 @@ from model.Jurado import Jurado
 from model.Director import Director
 
 
-
-
 class Controlador:
     def __init__(self):
         self._criterios = []
@@ -18,7 +16,7 @@ class Controlador:
 
 
     def _inicializar_criterios(self):
-        self._criteriosaappend(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2 ))
+        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2 ))
         self._criterios.append(Criterio(1, "Diseño académico y científico del tema", 0.15))
         self._criterios.append(Criterio(2, "Cumplimiento de los objetivos propuetos", 0.1))
         self._criterios.append(Criterio(3, "Creatividad e innovación de las soluciones y desarrollos propuestos", 0.1))
