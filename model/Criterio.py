@@ -1,11 +1,9 @@
 class Criterio:
 
-    def __init__(self, identificador, contexto, problema, ponderacion):
+    def __init__(self, identificador, descripcion, ponderacion):
         self._identificador = identificador
-        self._contexto = contexto
-        self._problema = problema
+        self._descripcion = descripcion
         self._ponderacion = ponderacion
-        self._calificaciones = [] #Se define inicialmente un arreglo que no tiene elementos(calificaciones) aún
 
     def get_identificador(self):
         return self._identificador
@@ -13,31 +11,20 @@ class Criterio:
     def set_identificador(self, identificador):
         self._identificador = identificador
 
-    def get_contexto(self):
-        return self._contexto
+    def get_descripcion(self):
+        return self._descripcion
 
-    def set_contexto(self, contexto):
-        self._contexto = contexto
+    def set_descripcion(self, descripcion):
+        self._descripcion = descripcion
 
-    def get_problema(self):
-        return self._problema
+    def get_ponderacion(self):
+        return self._ponderacion
 
-    def set_problema(self, problema):
-        self._problema = problema
+    def set_pónderacion(self, ponderacion):
+        self._ponderacion = ponderacion
 
-    def get_calificacion1(self):
-        return self._calificacion1
 
-    def set_calificacion1(self, calificacion1):
-        self._calificacion1 = calificacion1
 
-    def get_calificaciones(self):
-        return self._calificaciones
-
-    def calcular_nota_criterio(self):
-        nota = sum(self._calificaciones) #Suma todos los elementos de la lista
-        nota_final = nota / len(self._calificaciones)
-        return nota_final
 
 
 
