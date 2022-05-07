@@ -31,4 +31,14 @@ class Controlador:
     def get_criterios(self):
         return self._criterios
 
+    def get_asistentes(self):
+        return self._asistentes
+
+    def get_jurados(self):
+        return self._jurados
+
+    def get_directores(self):
+        return self._directores
+
+
 
