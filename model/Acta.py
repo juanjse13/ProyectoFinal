@@ -1,7 +1,6 @@
 from model.DetalleCriterio import DetalleCriterio
 from controller.Controlador import Controlador
 
-
 class Acta:
     def __init__(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                  director, codirector, jurado1, jurado2):
@@ -32,7 +31,12 @@ class Acta:
         lista_criterios = controlador_obj.get_criterios()
         for posicion in range(0, len(lista_criterios) - 1):
             self._detalle_criterio[lista_criterios [posicion].get_identificador()] = DetalleCriterio(lista_criterios [posicion]) #Se asocia un detalleCriterio a un Criterio
-
+    def exportar():
+        pass
+    def criterio_access():
+        pass
+    def get_acta():
+        pass
 
 
 
