@@ -39,6 +39,7 @@ class Controlador:
 
     def get_directores(self):
         return self._directores
+    
 
 
 
