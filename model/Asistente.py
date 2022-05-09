@@ -1,6 +1,16 @@
 from model.Usuario import Usuario
 
 
-class Asistente:
+class Asistente(Usuario):
     def __init__(self):
-        pass
+        return self.generar_acta()
+
+    def generar_acta(self, bool_value):
+        if bool_value == True:
+            return True
+        else:
+            return False
+
+    def crear_nueva_acta(self):
+        acta = Acta()
+        return acta
