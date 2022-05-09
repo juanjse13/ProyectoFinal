@@ -1,16 +1,29 @@
 from model.Usuario import Usuario
+from model.Criterio import Criterio
+from model.Acta import Acta
 
 
 class Director(Usuario):
     def __init__(self):
         Usuario.__init__()
 
-    def ver_actas(self, diccionario_actas):
-        for valor in diccionario_actas.values():
-            valor.get_acta()
+    def ver_acta(self, acta):
+        numero_acta = acta.get_numero()
+        fecha = acta.get_fecha()
+        nombre_estudiante = acta.get_nombre_estudiante()
+        nota_final = acta.get_nota_final()
+        jurado1 = acta.get_jurado1()
+        jurado2 = acta.get_jurado2()
+        director = acta.get_director()
+        return numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director
 
-    def modificar_criterio(self, detalle_criterio):
-        detalle_criterio.set_criterio()
 
-    def agregar_criterio(self):
-        pass
+
+    def modificar_criterio(self, criterio, descripcion, identificador, ponderacion):
+        criterio.set_descripcion(descripcion)
+        criterio.set_identificador(identificador)
+        criterio.set_ponderacion(ponderacion)
+
+    def agregar_criterio(self, identificador, descripcion, ponderacion):
+        criterio = Criterio(identificador, descripcion, ponderacion)
+        return criterio
