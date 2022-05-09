@@ -1,4 +1,5 @@
 from model.Usuario import Usuario
+from model.Acta import Acta
 
 
 class Asistente(Usuario):
@@ -11,6 +12,8 @@ class Asistente(Usuario):
         else:
             return False
 
-    def crear_nueva_acta(self):
-        acta = Acta()
+    def crear_nueva_acta(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
+                 director, codirector, jurado1, jurado2):
+        acta = Acta(numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
+                 director, codirector, jurado1, jurado2) #Se crea la instancia de acta
         return acta
