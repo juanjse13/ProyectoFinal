@@ -1,5 +1,3 @@
-
-
 class Acta:
     def __init__(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                  director, codirector, jurado1, jurado2):
@@ -16,8 +14,7 @@ class Acta:
         self._jurado1 = jurado1
         self._jurado2 = jurado2
         self._observaciones_generales = ""
-        self._detalle_criterio = {}
-        self._agregar_detalles_criterios()
+        self._detalles_criterios = {}
         self._nota_final = 0
 
     def get_numero(self):
@@ -43,6 +40,9 @@ class Acta:
 
     def set_observaciones_generales(self, observaciones_generales):
         self._observaciones_generales = observaciones_generales
+
+    def set_detalles_criterios(self, detalles_criterios):
+        self._detalles_criterios = detalles_criterios
 
 
 
