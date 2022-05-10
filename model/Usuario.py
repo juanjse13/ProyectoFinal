@@ -1,35 +1,60 @@
-class Usuario():
-    def __init__(self, nombre, identificacion, contraseña):
-        self.nombre = nombre
-        self.identificacion = identificacion
-        self.contraseña = contraseña
+class ErrorUserName(Exception): # string Name
+    def __init__(self,messaje = "INVALID CHARACTER(S) IN NAME, NUMBERS ARE NOT ALLOWED"):
+        super().__init__(messaje)
 
-    def register(self, name, password, identificacion):
-        lista_comprobante1 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-        lista_comprobante2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-                              's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ñ']
-        lista_comprobante3 = ['@', '#', '%', '&', '$', '!', '*', '?', '¿', '+', '-']
-        for itr in name:
-            try:
-                self.nombre = name
-            except name[itr] == lista_comprobante1[itr]:
-                return "ERROR, INVALID CHARACTER(S) IN NAME, NUMBERS ARE NOT ALLOWED"
-            try:
-                self.identificacion = identificacion
-            except identificacion[itr] == lista_comprobante2[itr]:
-                return "ERROR, INVALID CHARACTER(S) IN IDENTIFICATION, CHARACTER(S) ARE NOT ALLOWED"
-            try:
-                self.contraseña = password
-            except password[itr] == lista_comprobante3[itr]:
-                return "ERROR, INVALID CHARACTER(S) IN PASSWORD"
-        try:
-            self.contraseña = password
-        except password == "" or password == " ":
-            return "ERROR, INVALID PASSWORD"
+class ErrorUserPassword(Exception): # int Password
+    def __init__(self,messaje = "INVALID CHARACTER(S) IN PASSWORD"):
+        super().__init__(messaje)
+    
+class ErrorUserIdentification(Exception): # int Identification
+    def __init__(self,messaje = "INVALID CHARACTER(S) IN IDENTIFICATION"):
+        super().__init__(messaje)
+
+class Usuario():
+    def __init__(self,name,identificacion,password):
+        lista_comprobante1 = "0123456789"
+
+        if isinstance(identificacion,int) == False:
+            raise ErrorUserIdentification
+        elif isinstance(identificacion,int) == True:
+            self.identificacion =identificacion
+
+        if isinstance(password,int) == False:
+            raise ErrorUserPassword
+        elif isinstance(password,int) == True:
+            self.password = password
+        
+        if password == "" or password == " ":
+            raise ErrorUserPassword
+
+        for itr in range(len(name)):
+            for irt in range(len(lista_comprobante1)):
+                if name[itr] == lista_comprobante1[irt]:
+                    raise ErrorUserName
+                else:
+                    self.nombre = name
+            
+    def get_contrasena(self):
+        return self.contrasena
+    
+    def get_nombre(self):
+        return self.nombre
+    
+    def get_identificacion(self):
+        return self.identificacion
 
     def __del__(self):
         return "DELETE USER"
+    
+    def change_password(self,anti_password,new_password):
+        if anti_password == self.get_contrasena():
+            self.contrasena = new_password
+        else:
+            return "UNCORRED PASSWORD"
 
-    def change_password(self, password):
-        self.contraseña = password
+ 
+        
+        
+        
+
 

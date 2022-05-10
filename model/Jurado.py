@@ -1,25 +1,27 @@
-from model. Usuario import Usuario
+import Usuario
+import Acta
 
+"""
+Debe haber un atributo en las actas que permita saber el estado del acta,
+Estado sin exportar, Estado en proceso, Estado Exportado. Esto se hace mediante
+dos atributos en cada clase acta, que tengan por nombre, exportacion1 y exportacion2
+si las dos estan en False, el estado del acta es sin exportar, si una de las
+exportaciones es True el acta esta en proceso, y si las dos exportaciones son True
+el estado es exportado. Esto con el fin de poder exportar a PDF las actas que estan en
+estado Exportado
+"""
+# def mod_criterio(self,new_identificador,new_descripcion,new_ponderacion
 class Jurado(Usuario):
-    def __init__(self, nombre, identificacion, contraseña):
-        Usuario.__init__(self, nombre, identificacion, contraseña)
+    def __init__(self,name,identificacion,password):
+        Usuario.__init__(self,name,identificacion,password)
 
-
-    def exportar_acta(self,acta):
-        acta.exportar()
+    def exportar_acta(self,acta):    
+        acta.exportar() # Debe verificar estado del acta
         return acta
 
-    def evaluar_tesis(self,detalle_criterio):
-        vista = detalle_criterio.criterio_access()
-        vista.get_identificador()
-        vista.get_descripcion()
-        vista.get_ponderacion()
-        try:
-            nota = int(input())
-            detalle_criterio.set_calificacion(nota)
-        except nota > 5 or nota < 0.5:
-            return "INVALID CALIFICATION"
-        try:
-            detalle_criterio.set_observacion()
-        except detalle_criterio.get_observacion() == " ":
-            return "INVALID OBSERVATION"
+    def evaluar_criterio(self,detalle_criterio,calificacion):
+        pond = detalle_criterio.get_criterio().get_ponderacion()
+        calificacion_jurado = calificacion * pond
+        return calificacion_jurado
+
+
