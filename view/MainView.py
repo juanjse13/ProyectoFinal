@@ -4,6 +4,7 @@ from streamlit_option_menu import option_menu
 from controller.Controlador import Controlador
 
 
+
 class MainView:
 
     def __init__(self) -> None:
