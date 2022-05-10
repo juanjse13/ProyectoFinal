@@ -7,6 +7,7 @@ class Acta:
         self._autor = autor
         self._nombre_trabajo = nombre_trabajo
         self._modalidad = modalidad
+        self._estado_acta = "" #Puede ser: Vacio, En proceso o Terminado
         self._nombre_estudiante = nombre_estudiante
         self._identificacion_estudiante = identificacion_estudiante
         self._director = director
