@@ -8,9 +8,9 @@ director, codirector, jurado1, jurado2):
 """
 
 class Asistente(Usuario):
-    def __init__(self):
+    def __init__(self,nombre,identificacion,contrasena):
         self.actas_creadas = 0
-        Usuario.__init__(self)
+        Usuario.__init__(self,nombre,identificacion,contrasena)
     
     def crear_nueva_acta(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
 director, codirector, jurado1, jurado2):
