@@ -36,7 +36,7 @@ class MainView:
         # Defines the number of available columns del area principal
         self.col1, self.col2, self.col3 = st.columns([1, 1, 1])
 
-        self.usuario_actual = st.text_input("Escriba su número de idenficación")
+        self.usuario_actual = st.number_input("Escriba su número de identificación")
         self.contraseña_actual = st.text_input("Escriba su contraseña")
         self.tipo_usuario_actual = st.selectbox(
             '¿Qué tipo de usuario eres?',
