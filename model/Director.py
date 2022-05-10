@@ -19,7 +19,7 @@ class Director(Usuario):
 
 
 
-    def modificar_criterio(self, criterio, descripcion, identificador, ponderacion):
+    def modificar_criterio(self, criterio, descripcion, ponderacion, identificador):
         criterio.set_descripcion(descripcion)
         criterio.set_identificador(identificador)
         criterio.set_ponderacion(ponderacion)

@@ -2,12 +2,13 @@ from model.Criterio import Criterio
 from model.Asistente import Asistente
 from model.Jurado import Jurado
 from model.Director import Director
-
+from model.DetalleCriterio import DetalleCriterio
 
 class Controlador:
     def __init__(self):
         self._criterios = []
         self._inicializar_criterios() #inicializa los criterios
+        self._agregar_detalles_criterios()
         self._actas = {}
         self._asistentes = {1007827635 : Asistente(), 66825016 : Asistente(), 93384031 : Asistente()} #TODO: Agregarle los parámetros a las instancias
         self._jurados = {123 : Jurado(), 321 : Jurado(), 543 : Jurado()}
@@ -25,8 +26,6 @@ class Controlador:
         self._criterios.append(Criterio(6, "Calidad y presentación del documento escrito", 0.075))
         self._criterios.append(Criterio(7, "Presentación oral", 0.075))
 
-    def agregar_acta(self, acta_obj):
-        self._actas[acta_obj.get_numero()] = acta_obj #Se agrega el acta al diccionario y se le asocia la llave
 
     def get_criterios(self):
         return self._criterios
@@ -39,7 +38,28 @@ class Controlador:
 
     def get_directores(self):
         return self._directores
-    
 
+    def agregar_acta(self, acta_obj): #Método que recibe una instancia de tipo Acta y lo agrega al diccionario de Actas
+        self._actas[acta_obj.get_numero()] = acta_obj #Se agrega el acta al diccionario y se le asocia la llave
+
+    def agregar_nuevo_criterio(self, identificador, descripcion, ponderacion): #Se añade el criterio a la lista Criterios
+        nuevo_criterio = Director.agregar_criterio(identificador, descripcion, ponderacion)
+        self._criterios.append(nuevo_criterio)
+
+    def cambiar_criterio(self, identificador, descripcion, ponderacion):
+        for posicion in range(0, len(self._criterios)):
+            if self._criterios[posicion].get_identificador() == identificador: #Si corresponde al criterio deseado, cambie dicho criterio
+                Director.modificar_criterio(self._criterios[posicion], descripcion, ponderacion, identificador)
+
+    def ver_actas(self): #TODO: Implementar método
+        pass
+
+    def _agregar_detalles_criterios(self): #Objeto de tipo controlador que contiene una lista con los criterios
+        lista_criterios = self._criterios
+        detalle_criterios = {}
+        for posicion in range(0, len(lista_criterios) - 1):
+            detalle_criterios[lista_criterios[posicion].get_identificador()] = DetalleCriterio(lista_criterios [posicion]) #Se asocia un detalleCriterio a un Criterio
+
+        return detalle_criterios
 
 
