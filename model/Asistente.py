@@ -3,14 +3,8 @@ from model.Acta import Acta
 
 
 class Asistente(Usuario):
-    def __init__(self):
-        return self.generar_acta()
-
-    def generar_acta(self, bool_value):
-        if bool_value == True:
-            return True
-        else:
-            return False
+    def __init__(self, nombre, identificacion, contraseña):
+        Usuario.__init__(nombre, identificacion, contraseña)
 
     def crear_nueva_acta(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                  director, codirector, jurado1, jurado2):

@@ -8,11 +8,10 @@ class Controlador:
     def __init__(self):
         self._criterios = []
         self._inicializar_criterios() #inicializa los criterios
-        self.agregar_detalles_criterios()
         self._actas = {}
-        self._asistentes = {1007827635 : Asistente(), 66825016 : Asistente(), 93384031 : Asistente()} #TODO: Agregarle los parámetros a las instancias
-        self._jurados = {123 : Jurado(), 321 : Jurado(), 543 : Jurado()}
-        self._directores = {100786354 : Director(), 95485943 : Director()}
+        self._asistentes = {1007827635 : Asistente("Juan", 1007827635, 123), 66825016 : Asistente("Juan", 66825016, 123), 93384031 : Asistente("Pepe", 93384031, 123)}
+        self._jurados = {123 : Jurado("Martin", 123, 123), 321 : Jurado("Alex", 3215, 123), 543 : Jurado("Alex", 543, 123)}
+        self._directores = {100786354 : Director("Francesco", 100786354, 123), 95485943 : Director("Luis", 95485943, 123)}
 
 
 
@@ -60,7 +59,7 @@ class Controlador:
         lista_criterios = self._criterios
         detalle_criterios = {}
         for posicion in range(0, len(lista_criterios) - 1):
-            detalle_criterios[lista_criterios[posicion].get_identificador()] = DetalleCriterio(lista_criterios [posicion]) #Se asocia un detalleCriterio a un Criterio
+            detalle_criterios[lista_criterios[posicion].get_identificador()] = DetalleCriterio(lista_criterios[posicion]) #Se asocia un detalleCriterio a un Criterio
         return detalle_criterios
 
 

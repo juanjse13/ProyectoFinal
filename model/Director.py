@@ -4,8 +4,8 @@ from model.Acta import Acta
 
 
 class Director(Usuario):
-    def __init__(self):
-        Usuario.__init__()
+    def __init__(self, nombre, identificacion, contraseña):
+        Usuario.__init__(nombre, identificacion, contraseña)
 
     def ver_acta(self, acta):
         numero_acta = acta.get_numero()

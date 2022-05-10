@@ -1,8 +1,9 @@
 from model. Usuario import Usuario
 
 class Jurado(Usuario):
-    def __init__(self):
-        Usuario.__init__()
+    def __init__(self, nombre, identificacion, contraseña):
+        Usuario.__init__(nombre, identificacion, contraseña)
+
 
     def exportar_acta(self,acta):
         acta.exportar()

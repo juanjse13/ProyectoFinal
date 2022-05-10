@@ -1,8 +1,8 @@
 class Usuario():
-    def __init__(self):
-        self.nombre = ""
-        self.identificacion = 0
-        self.contraseña = ""
+    def __init__(self, nombre, identificacion, contraseña):
+        self.nombre = nombre
+        self.identificacion = identificacion
+        self.contraseña = contraseña
 
     def register(self, name, password, identificacion):
         lista_comprobante1 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
