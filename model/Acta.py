@@ -1,4 +1,6 @@
 from exepciones_criterio import InvalidExportRecord, NotFoundUser
+
+
 class Acta:
     def __init__(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                  director, codirector, jurado1, jurado2):

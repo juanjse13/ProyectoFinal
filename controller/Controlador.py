@@ -39,9 +39,9 @@ class Controlador:
     def get_directores(self):
         return self._directores
 
-    def agregar_acta(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
+    def agregar_acta(self, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                     director, codirector, jurado1, jurado2):
-        acta_obj = Acta(numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
+        acta_obj = Asistente.crear_nueva_acta(fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                     director, codirector, jurado1, jurado2)
         detalles_criterios = self.agregar_detalles_criterios()  # Se inicializan los detalles criterios para cada instancia de tipo Acta
         acta_obj.set_detalles_criterios(detalles_criterios)

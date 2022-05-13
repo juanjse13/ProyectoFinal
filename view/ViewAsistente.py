@@ -15,9 +15,10 @@ def crear_acta_nueva(st):
         ('Investigación', 'Aplicado'))
 
     diccionario_directores = Controlador.get_directores()  #Se trae el diccionario de directores
-    valores_directores =
     diccionario_jurados = Controlador.get_jurados()  #Se trae el diccionario de directores
 
+
+    ##TODO: Buscar cómo traer los valores y ponerlos en un selectbox
     #jurado1 = st.selectbox(
      #   'Seleccione al primer de los jurados',
     #    (for valor in diccionario_directores.values(),)
@@ -35,7 +36,7 @@ def crear_acta_nueva(st):
     enviado_btn = st.button("Submit")
 
     if enviado_btn:
-        Controlador.agregar_acta(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante,
+        Controlador.agregar_acta(numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante,
                                  identificacion_estudiante,
                                  director, codirector, jurado1, jurado2)
         st.write("Acta agregada exitosamente")
