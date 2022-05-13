@@ -1,5 +1,5 @@
-import Usuario
-import Acta
+import Usuario 
+from DetalleCriterio import DetalleCriterio
 
 """
 Debe haber un atributo en las actas que permita saber el estado del acta,
@@ -19,9 +19,9 @@ class Jurado(Usuario):
         acta.exportar() # Debe verificar estado del acta
         return acta
 
-    def evaluar_criterio(self,detalle_criterio,calificacion):
-        pond = detalle_criterio.get_criterio().get_ponderacion()
-        calificacion_jurado = calificacion * pond
-        return calificacion_jurado
+    def evaluar(self,calificacion):
+        return calificacion
+
+
 
 

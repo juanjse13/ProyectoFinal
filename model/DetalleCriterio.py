@@ -1,5 +1,4 @@
 
-
 class DetalleCriterio:
 
     #Se aplica sobrecarga
@@ -25,4 +24,6 @@ class DetalleCriterio:
 
     def set_calificacion1(self, observacion2):
         self._observacion2 = observacion2
-
+    
+    def get_criterio(self):
+        return self._criterio
