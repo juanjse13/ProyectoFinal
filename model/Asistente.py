@@ -1,12 +1,6 @@
 from Usuario import Usuario
 from Acta import Acta
 
-"""
-def __init__(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
-director, codirector, jurado1, jurado2):
-
-"""
-
 class Asistente(Usuario):
     def __init__(self,nombre,identificacion,contrasena):
         self.actas_creadas = 0

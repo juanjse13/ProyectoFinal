@@ -1,3 +1,6 @@
+
+from exepciones_criterio import InvalidPassword
+
 class ErrorUserName(Exception): # string Name
     def __init__(self,messaje = "INVALID CHARACTER(S) IN NAME, NUMBERS ARE NOT ALLOWED"):
         super().__init__(messaje)
@@ -50,7 +53,7 @@ class Usuario():
         if anti_password == self.get_contrasena():
             self.contrasena = new_password
         else:
-            return "UNCORRED PASSWORD"
+            raise InvalidPassword("IS NOT THE CORRECT PASSWORD")
 
  
         
