@@ -12,8 +12,9 @@ def crear_acta_nueva(st):
 
 
 
-    def __init__(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante,
-                 identificacion_estudiante,
-                 director, codirector, jurado1, jurado2):
+    #def __init__(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante,
+     #            identificacion_estudiante,
+      #           director, codirector, jurado1, jurado2):
+      #           director, codirector, jurado1, jurado2):
 
 
