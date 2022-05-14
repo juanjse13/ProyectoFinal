@@ -1,11 +1,10 @@
-from Criterio import Criterio
-from Asistente import Asistente
-from Jurado import Jurado
-from Director import Director
-from DetalleCriterio import DetalleCriterio
-from Acta import Acta
-import matplotlib.pyplot as plt
-import pandas as pd
+from model.Criterio import Criterio
+from model.Asistente import Asistente
+from model.Jurado import Jurado
+from model.Director import Director
+from model.DetalleCriterio import DetalleCriterio
+from model.Acta import Acta
+
 
 class Controlador:
     def __init__(self):
@@ -40,8 +39,8 @@ class Controlador:
         return self._directores
 
     def agregar_acta(self, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
-                    director, codirector, jurado1, jurado2):
-        acta_obj = Asistente.crear_nueva_acta(fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
+                    director, codirector, jurado1, jurado2, asistente): #recibe por parametros el asistente que crea el acta
+        acta_obj = asistente.crear_nueva_acta(fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                     director, codirector, jurado1, jurado2)
         detalles_criterios = self.agregar_detalles_criterios()  # Se inicializan los detalles criterios para cada instancia de tipo Acta
         acta_obj.set_detalles_criterios(detalles_criterios)
