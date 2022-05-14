@@ -1,5 +1,5 @@
-import Usuario 
-from DetalleCriterio import DetalleCriterio
+from model.Usuario import  Usuario
+from model.DetalleCriterio import DetalleCriterio
 
 """
 Debe haber un atributo en las actas que permita saber el estado del acta,

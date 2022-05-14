@@ -1,5 +1,5 @@
-from Usuario import Usuario
-from Acta import Acta
+from model.Usuario import Usuario
+from model.Acta import Acta
 
 class Asistente(Usuario):
     def __init__(self,nombre,identificacion,contrasena):
@@ -16,4 +16,5 @@ class Asistente(Usuario):
     
     def get_actas_creadas(self):
         return self.actas_creadas
+
 

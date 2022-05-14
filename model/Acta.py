@@ -1,4 +1,4 @@
-from exepciones_criterio import InvalidExportRecord, NotFoundUser
+from model.exepciones_criterio import InvalidExportRecord, NotFoundUser
 
 
 class Acta:

@@ -1,5 +1,5 @@
 
-from exepciones_criterio import InvalidPassword
+from model.exepciones_criterio import InvalidPassword
 
 class ErrorUserName(Exception): # string Name
     def __init__(self,messaje = "INVALID CHARACTER(S) IN NAME, NUMBERS ARE NOT ALLOWED"):
@@ -25,7 +25,7 @@ class Usuario():
         if isinstance(password,int) == False:
             raise ErrorUserPassword
         elif isinstance(password,int) == True:
-            self.password = password
+            self.contrasena = password
         
         if password == "" or password == " ":
             raise ErrorUserPassword
