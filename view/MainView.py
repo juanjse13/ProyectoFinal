@@ -3,6 +3,7 @@ from pydataxm.pydataxm import ReadDB
 from streamlit_option_menu import option_menu
 from controller.Controlador import Controlador
 from view.ViewAsistente import definir_layout_asistente
+from view.ViewDirector import definir_layout_director
 
 
 
@@ -90,7 +91,7 @@ class MainView:
                 if diccionario_directores[self.usuario_actual].get_contrasena() == self.contraseña_actual:  # Si al clave que mete es la misma que está previamente guardada en el usuario
                     ##Código que diriga al ViewDirectores
                     director = diccionario_directores[self.usuario_actual]  # Se trae la instancia particular de director donde la llave es el numero de id
-                    st.write("Soy Director")
+                    definir_layout_director(st, controller, director)
                 else:
                     st.error("La contraseña no coincide")
             else:
