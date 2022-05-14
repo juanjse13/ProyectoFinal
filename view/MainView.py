@@ -2,6 +2,7 @@ import streamlit as st
 from pydataxm.pydataxm import ReadDB
 from streamlit_option_menu import option_menu
 from controller.Controlador import Controlador
+from view.ViewAsistente import definir_layout_asistente
 
 
 
@@ -37,7 +38,7 @@ class MainView:
         self.col1, self.col2, self.col3 = st.columns([1, 1, 1])
 
         self.usuario_actual = st.number_input("Escriba su número de identificación")
-        self.contraseña_actual = st.text_input("Escriba su contraseña")
+        self.contraseña_actual = st.number_input("Escriba su contraseña")
         self.tipo_usuario_actual = st.selectbox(
             '¿Qué tipo de usuario eres?',
             ('Asistente', 'Jurado', 'Director'))
@@ -51,22 +52,21 @@ class MainView:
           #                                 icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
         if enviado_btn:
-            self.controlar_menu()
+            self.controlar_menu(self.controller)
         # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
         # entonces de esta manera se actualiza el controlador en la vista principal
         return self.controller
 
-    def ver_ejemplo(self):
-        pass
 
-    def controlar_menu(self):
+    def controlar_menu(self, controller):
         # Filtro opciones de menu
         if self.tipo_usuario_actual == "Asistente":
            diccionario_asistentes = self.controller.get_asistentes()
            if diccionario_asistentes.get(self.usuario_actual): # Si el número de identificación existe en el diccionario de asistentes
-               if diccionario_asistentes[self.usuario_actual].get_contraseña() == self.contraseña_actual: #Si al clave que mete es la misma que está previamente guardada en el usuario
+               if diccionario_asistentes[self.usuario_actual].get_contrasena() == self.contraseña_actual: #Si al clave que mete es la misma que está previamente guardada en el usuario
                 ##Código que diriga al ViewAsistente
-                st.write("Soy Asistente")
+                asistente = diccionario_asistentes[self.usuario_actual] #Se trae la instancia particular de asistente donde la llave es el numero de id
+                definir_layout_asistente(st, controller, asistente) #Aqui tiene que pasar tanto a la instancia controlador como a la instancia asistente
                else:
                    st.error("La contraseña no coincide")
            else:
@@ -75,8 +75,9 @@ class MainView:
         elif self.tipo_usuario_actual == "Jurado":
             diccionario_jurados = self.controller.get_asistentes()
             if diccionario_jurados.get(self.usuario_actual):  # Si el número de identificación existe en el diccionario de jurados
-                if diccionario_jurados[self.usuario_actual].get_contraseña() == self.contraseña_actual:  # Si al clave que mete es la misma que está previamente guardada en el usuario
+                if diccionario_jurados[self.usuario_actual].get_contrasena() == self.contraseña_actual:  # Si al clave que mete es la misma que está previamente guardada en el usuario
                     ##Código que diriga al ViewJurados
+                    jurado = diccionario_jurados[self.usuario_actual]  # Se trae la instancia particular de jurado donde la llave es el numero de id
                     st.write("Soy Jurado")
                 else:
                     st.error("La contraseña no coincide")
@@ -86,15 +87,18 @@ class MainView:
         elif self.tipo_usuario_actual == "Director":
             diccionario_directores = self.controller.get_asistentes()
             if diccionario_directores.get(self.usuario_actual):  # Si el número de identificación existe en el diccionario de directores
-                if diccionario_directores[self.usuario_actual].get_contraseña() == self.contraseña_actual:  # Si al clave que mete es la misma que está previamente guardada en el usuario
+                if diccionario_directores[self.usuario_actual].get_contrasena() == self.contraseña_actual:  # Si al clave que mete es la misma que está previamente guardada en el usuario
                     ##Código que diriga al ViewDirectores
+                    director = diccionario_directores[self.usuario_actual]  # Se trae la instancia particular de director donde la llave es el numero de id
                     st.write("Soy Director")
                 else:
                     st.error("La contraseña no coincide")
             else:
                 st.error("El usuario no se encuentra definido")
 
+
+
 # Main call
 if __name__ == "__main__":
     gui = MainView()
-    gui.controlar_menu()
+
