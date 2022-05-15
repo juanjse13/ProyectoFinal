@@ -96,7 +96,3 @@ class Controlador:
         for posicion in range(0, len(lista_criterios) - 1):
             detalle_criterios[lista_criterios[posicion].get_identificador()] = DetalleCriterio(lista_criterios[posicion]) #Se asocia un detalleCriterio a un Criterio
         return detalle_criterios
-
-"""
-
-"""

@@ -9,9 +9,9 @@ class Director(Usuario):
     def __init__(self,nombre,contrasena,identificacion):
         Usuario.__init__(self,nombre,contrasena,identificacion)
     
-    def ver_actas_identificadas(self,diccionario_actas,numero): 
+    def ver_acta(self,diccionario_actas,numero):
         valor = diccionario_actas[numero]
-        return valor.get_acta() # Retorna el acta en una clave del diccionario
+        return valor # Retorna el acta en una clave del diccionario
 
     def modificar_criterio(self,criterio,new_ident,new_desc,new_pond):
         criterio.mod_criterio(new_ident,new_desc,new_pond)

@@ -1,2 +1,6 @@
-def definir_layout_Asistente(st):
+def definir_layout_jurado(st):
+    pass
+
+
+def calificar_tesis(st):
     pass

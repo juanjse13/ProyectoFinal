@@ -23,25 +23,32 @@ def crear_acta_nueva(st, controller, asistente):
         'Seleccione al primer de los jurados',
         diccionario_jurados.keys()
         )
+    jurado1 = diccionario_jurados[box_jurado1]
+    #Para mostrar la información del jurado seleccionado
+    st.write('Seleccionaste como 1° jurado a:', jurado1.get_nombre())
+
     box_jurado2 = st.selectbox(
         'Seleccione al segundo de los jurados',
         diccionario_jurados.keys()
         )
+    jurado2 = diccionario_jurados[box_jurado2]
+    st.write('Seleccionaste como 2° jurado a:', jurado2.get_nombre())
+
     box_director = st.selectbox(
         'Seleccione al director',
         diccionario_directores.keys()
         )
+    director = diccionario_directores[box_director]
+    st.write('Seleccionaste como director a:', director.get_nombre())
 
     #TODO: revisar cómo se puede poner la opción de que no haya codirector
     box_codirector = st.selectbox(
         'Seleccione al codirector',
         diccionario_directores.keys()
         )
-    #Se busca en los diccionarios la instancia respectiva
-    jurado1 = diccionario_jurados[box_jurado1]
-    jurado2 = diccionario_jurados[box_jurado2]
-    director = diccionario_directores[box_director]
     codirector = diccionario_directores[box_codirector]
+    st.write('Seleccionaste como codirector a:', codirector.get_nombre())
+
 
     enviado_btn2 = st.button("Crear Acta")
 

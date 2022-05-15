@@ -4,7 +4,7 @@ from streamlit_option_menu import option_menu
 from controller.Controlador import Controlador
 from view.ViewAsistente import definir_layout_asistente
 from view.ViewDirector import definir_layout_director
-
+from view.ViewJurado import definir_layout_jurado
 
 
 class MainView:
@@ -79,7 +79,7 @@ class MainView:
                 if diccionario_jurados[self.usuario_actual].get_contrasena() == self.contraseña_actual:  # Si al clave que mete es la misma que está previamente guardada en el usuario
                     ##Código que diriga al ViewJurados
                     jurado = diccionario_jurados[self.usuario_actual]  # Se trae la instancia particular de jurado donde la llave es el numero de id
-                    st.write("Soy Jurado")
+                    definir_layout_jurado(st, controller, jurado) #Aqui tiene que pasar tanto a la instancia controlador como a la instancia asistente
                 else:
                     st.error("La contraseña no coincide")
             else:

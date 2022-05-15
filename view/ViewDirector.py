@@ -2,12 +2,16 @@ import streamlit as st
 def definir_layout_director(st, controller, director):
     opcion1 = st.button("Modificar criterio")
     opcion2 = st.butto("Agregar criterio")
+    opcion3 = st.button("Ver actas")
 
     if opcion1:
         modificar_criterio(st, controller)
 
     if opcion2:
         adicionar_criterio(st, controller)
+
+    if opcion3:
+        observar_actas(st, controller)
 
 def modificar_criterio(st, controller):
     lista_criterios = controller.get_criterios() #Se trae la lista de criterios
@@ -45,6 +49,8 @@ def adicionar_criterio(st, controller):
     return controller
 
 
+def observar_actas(st, controller):
+    pass
 
 
 
