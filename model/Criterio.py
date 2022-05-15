@@ -29,12 +29,7 @@ class Criterio():
     
     def get_ponderacion(self):
         return self.ponderacion
-    
-    def mod_criterio(self,new_identificador,new_descripcion,new_ponderacion):
-        self.set_identificador(new_identificador)
-        self.set_descripcion(new_descripcion)
-        self.set_ponderacion(new_ponderacion)
-    
+
 
     
     
