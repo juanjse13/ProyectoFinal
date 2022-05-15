@@ -17,7 +17,8 @@ class Director(Usuario):
         jurado1 = acta.get_jurado1()
         jurado2 = acta.get_jurado2()
         director = acta.get_director()
-        return numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director
+        reconocimiento = acta.get_reconocimiento()
+        return numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento
 
     def modificar_criterio(self, criterio, descripcion, ponderacion, identificador):
         criterio.set_descripcion(descripcion)
