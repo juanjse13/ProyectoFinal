@@ -49,8 +49,10 @@ def adicionar_criterio(st, controller):
     return controller
 
 
-def observar_actas(st, controller):
-    pass
+def observar_actas(st, controller): ##TODO: Terminar observar_actas
+    diccionario_actas = controller.get_actas()
+    ##TODO: Cómo se implementa y se traen los datos???
+    st.dataframe( controller.ver_actas(diccionario_actas.values()))  # Same as st.write(df)
 
 
 
