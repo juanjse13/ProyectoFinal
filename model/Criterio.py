@@ -2,9 +2,9 @@ from model.exepciones_criterio import CriteryAssignationError
 
 class Criterio():
     def __init__(self, identificador, descripcion, ponderacion):
-        self.identificador = identificador
-        self.descripcion = descripcion
-        self.ponderacion = ponderacion
+        self._identificador = identificador
+        self._descripcion = descripcion
+        self._ponderacion = ponderacion
         if isinstance(self.descripcion,str) == False:
             raise CriteryAssignationError("INVALID, NEED TYPE(STR) FOR NAME")
         if isinstance(self.identificador,int) == False:
@@ -13,22 +13,22 @@ class Criterio():
             raise CriteryAssignationError("INVALID, NEED TYPE(INT) FOR PONDERATION")
 
     def set_identificador(self,identificacion):
-        self.identificador = identificacion
+        self._identificador = identificacion
 
     def set_descripcion(self,descripcion):
-        self.descripcion = descripcion
+        self._descripcion = descripcion
 
     def set_ponderacion(self,ponderacion):
-        self.ponderacion = ponderacion
+        self._ponderacion = ponderacion
 
     def get_identificador(self):
-        return self.identificador
+        return self._identificador
     
     def get_descripcion(self):
-        return self.identificador
+        return self._descripcion
     
     def get_ponderacion(self):
-        return self.ponderacion
+        return self._ponderacion
 
 
     

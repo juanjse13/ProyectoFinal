@@ -45,6 +45,9 @@ class Acta:
     
     def get_codirector(self):
         return self._codirector
+
+    def get_detalles_criterios(self):
+        return self._detalles_criterios
     
     def verificador_estado(self):
         conteo = 0
@@ -75,7 +78,8 @@ class Acta:
             raise InvalidExportRecord("IS NOT POSSIBLE EXPORT CAUSE RECORD IS IN PROGRESS")
         elif self._estado_acta == "Terminado":
             self.exportar() # Añadir código para exportar a pdf
-            
+
+    ##TODO: Revisar necesidad de este método
     def recorrido_actas(self):
         self.get_numero()
         self.get_fecha()
@@ -96,19 +100,7 @@ class Acta:
         elif 3.5 <= self._nota_final < 4:
             self._reconocimiento = "Basico"
         elif self._nota_final < 3.5:
-            self._reconocimiento = "Rechazado" 
-        
-    def evaluar_acta(self,jurado): # Evalua si es el jurado del acta y cual de los dos designados es 
-        if jurado == self._jurado1:
-            for i in self._detalles_criterios:
-                self._detalles_criterios[i].get_criterio().get_descripcion()
-                self._detalles_criterios[i].set_calificacion1()
-        elif jurado == self._jurado2:
-            for i in self._detalles_criterios:
-                self._detalles_criterios[i].get_criterio().get_descripcion()
-                self._detalles_criterios[i].set_calificacion2()
-        else:
-            raise NotFoundUser("NO JURY FOUND FOR THIS RECORD")
+            self._reconocimiento = "Rechazado"
         
     def get_reconocimiento(self):
         self.calcular_reconocimiento()

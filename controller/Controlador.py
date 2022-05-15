@@ -66,10 +66,10 @@ class Controlador:
             if self._criterios[posicion].get_identificador() == identificador: #Si corresponde al criterio deseado, cambie dicho criterio
                 Director.modificar_criterio(self._criterios[posicion], descripcion, ponderacion, identificador)
 
-    def ver_actas(self): #TODO: Implementar método
-        for i in self._actas:
-            actas = self._actas[i]
-            actas.recorrido_actas()
+    def ver_actas(self,acta): #TODO: Implementar método
+        numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento = Director.ver_acta(acta)
+        return numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento
+
         
     def ver_promedios(self): # Solo para las actas con estados Terminado
         promedio = 0
@@ -96,3 +96,8 @@ class Controlador:
         for posicion in range(0, len(lista_criterios) - 1):
             detalle_criterios[lista_criterios[posicion].get_identificador()] = DetalleCriterio(lista_criterios[posicion]) #Se asocia un detalleCriterio a un Criterio
         return detalle_criterios
+
+    ##TODO: Definir correctmente el método
+    def evaluar_acta(self, lista_observaciones, lista_calificaciones, tipo_jurado, acta_a_calificar):
+        for calificacion in range (0, len(lista_calificaciones) - 1):
+            pass
