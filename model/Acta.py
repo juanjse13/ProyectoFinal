@@ -3,7 +3,7 @@ from model.exepciones_criterio import InvalidExportRecord, NotFoundUser
 
 class Acta:
     def __init__(self, numero, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
-                 director, codirector, jurado1, jurado2):
+                 director, codirector, jurado1, jurado2, detalles_criterios):
         self._numero = numero
         self._fecha = fecha
         self._periodo = periodo
@@ -18,7 +18,7 @@ class Acta:
         self._jurado1 = jurado1
         self._jurado2 = jurado2
         self._observaciones_generales = ""
-        self._detalles_criterios = {}
+        self._detalles_criterios = detalles_criterios
         self._nota_final = 0
         self._reconocimiento = "" # Intervalo de la nota del acta
 
@@ -49,7 +49,7 @@ class Acta:
     def get_detalles_criterios(self):
         return self._detalles_criterios
     
-    def verificador_estado(self):
+    '''def verificador_estado(self):
         conteo = 0
         for i in self._detalles_criterios:
             if self._detalles_criterios[i].calcular_nota_criterio() != 0:
@@ -59,7 +59,7 @@ class Acta:
         elif 0 < conteo < len(self._detalles_criterios):
             self._estado_acta = "Proceso"
         elif conteo == 0:
-            self._estado_acta = "Vacio"
+            self._estado_acta = "Vacio"'''
     
     def get_estado(self):
         self.verificador_estado()

@@ -5,11 +5,11 @@ class Criterio():
         self._identificador = identificador
         self._descripcion = descripcion
         self._ponderacion = ponderacion
-        if isinstance(self.descripcion,str) == False:
+        if isinstance(self._descripcion,str) == False:
             raise CriteryAssignationError("INVALID, NEED TYPE(STR) FOR NAME")
-        if isinstance(self.identificador,int) == False:
+        if isinstance(self._identificador,int) == False:
             raise CriteryAssignationError("INVALID, NEED TYPE(INT) FOR IDENTIFY")
-        if isinstance(self.ponderacion,float) == False:
+        if isinstance(self._ponderacion,float) == False:
             raise CriteryAssignationError("INVALID, NEED TYPE(INT) FOR PONDERATION")
 
     def set_identificador(self,identificacion):

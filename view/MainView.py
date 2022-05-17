@@ -16,6 +16,7 @@ class MainView:
             self.usuario_actual = ""
             self.contraseña_actual = ""
             self.tipo_usuario_actual = ""
+            self.auntenticado = False
             # Inicialización de las variables necesarias
 
             # Conexión con el controlador
@@ -28,6 +29,7 @@ class MainView:
             self.contraseña_actual = st.session_state.main_view.contraseña_actual
             self.tipo_usuario_actual = st.session_state.main_view.tipo_usuario_actual
             self.controller = st.session_state.main_view.controller
+            self.auntenticado = st.session_state.main_view.auntenticado
              # Carga de las variables necesarias
 
         self._inicialializar_layout()
@@ -38,13 +40,6 @@ class MainView:
         # Defines the number of available columns del area principal
         self.col1, self.col2, self.col3 = st.columns([1, 1, 1])
 
-        self.usuario_actual = st.number_input("Escriba su número de identificación")
-        self.contraseña_actual = st.number_input("Escriba su contraseña")
-        self.tipo_usuario_actual = st.selectbox(
-            '¿Qué tipo de usuario eres?',
-            ('Asistente', 'Jurado', 'Director'))
-
-        enviado_btn = st.button("Submit")
 
 
         # Define lo que abrá en la barra de menu
@@ -52,10 +47,19 @@ class MainView:
          #   self.menu_actual = option_menu("Menu", ["About", '[OtroMenu]Mi Menu'],
           #                                 icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
-        if enviado_btn:
-            self.controlar_menu(self.controller)
+        if self.auntenticado == False:
+            self.usuario_actual = st.number_input("Escriba su número de identificación")
+            self.contraseña_actual = st.number_input("Escriba su contraseña")
+            self.tipo_usuario_actual = st.selectbox(
+                '¿Qué tipo de usuario eres?',
+                ('Asistente', 'Jurado', 'Director'))
+            self.auntenticado = st.button("Submit")
+
+        self.controlar_menu(self.controller)
         # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
         # entonces de esta manera se actualiza el controlador en la vista principal
+
+
         return self.controller
 
 

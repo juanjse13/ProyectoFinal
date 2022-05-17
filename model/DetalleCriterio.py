@@ -1,8 +1,7 @@
 
 class DetalleCriterio:
 
-    #Se aplica sobrecarga
-    def __int__(self, criterio):
+    def __init__(self, criterio):
         self._calificacion1 = 0
         self._calificacion2 = 0
         self._observacion1 = 0

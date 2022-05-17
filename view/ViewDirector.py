@@ -1,7 +1,7 @@
 import streamlit as st
 def definir_layout_director(st, controller, director):
     opcion1 = st.button("Modificar criterio")
-    opcion2 = st.butto("Agregar criterio")
+    opcion2 = st.button("Agregar criterio")
     opcion3 = st.button("Ver actas")
 
     if opcion1:
@@ -15,20 +15,31 @@ def definir_layout_director(st, controller, director):
 
 def modificar_criterio(st, controller):
     lista_criterios = controller.get_criterios() #Se trae la lista de criterios
+    for criterio in lista_criterios:
+        descripcion = st.text_input(criterio.get_descripcion())
+        criterio.set_descripcion(descripcion)
+        #ponderacion = st.number_input(criterio.get_ponderacion(), format = "%.2f")
+        #criterio.set_ponderacion(ponderacion)
+
+
+
 
     #TODO: Ver cómo traer los criterios que están en la lista_criterios
-    # identificador = st.selectbox(
-    #   'Seleccione el criterio que desea modificar',
-    #    (for valor in lista_criterios.values(),)
+    '''identificador = st.selectbox(
+        'Seleccione el criterio que desea modificar',
+        for valor in lista_criterios:
+            lista_criterios[valor]
+    )
 
     descripcion = st.text_input("Descripción")
-    ponderacion = st.text_input("Ponderación")
+    ponderacion = st.text_input("Ponderación")'''
 
 
     enviado_btn = st.button("Modificar")
 
     if enviado_btn:
-        controller.cambiar_criterio(identificador, descripcion, ponderacion)
+        #TODO: Falta implementar el método validar_criterio en el controlador
+        #controller.validar_criterio(identificador, descripcion, ponderacion)
         st.write("Criterio modificado exitosamente")
     # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
     # entonces de esta manera se actualiza el controlador en la vista principal

@@ -6,6 +6,7 @@ from model.DetalleCriterio import DetalleCriterio
 from model.Acta import Acta
 
 
+
 class Controlador:
     def __init__(self):
         self._criterios = []
@@ -17,7 +18,7 @@ class Controlador:
         self._lista_actas = []
 
     def _inicializar_criterios(self):
-        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2 ))
+        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2))
         self._criterios.append(Criterio(1, "Diseño académico y científico del tema", 0.15))
         self._criterios.append(Criterio(2, "Cumplimiento de los objetivos propuetos", 0.1))
         self._criterios.append(Criterio(3, "Creatividad e innovación de las soluciones y desarrollos propuestos", 0.1))
@@ -40,22 +41,21 @@ class Controlador:
 
     def agregar_acta(self, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
                     director, codirector, jurado1, jurado2, asistente): #recibe por parametros el asistente que crea el acta
-        acta_obj = asistente.crear_nueva_acta(fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
-                    director, codirector, jurado1, jurado2)
         detalles_criterios = self.agregar_detalles_criterios()  # Se inicializan los detalles criterios para cada instancia de tipo Acta
-        acta_obj.set_detalles_criterios(detalles_criterios)
+        acta_obj = asistente.crear_nueva_acta(fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
+                    director, codirector, jurado1, jurado2, detalles_criterios)
         self._actas[acta_obj.get_numero()] = acta_obj  # Se agrega el acta al diccionario y se le asocia la llave
 
         ##TODO:Esta aparte de abajo toca reformularla
-        numero = acta_obj.get_numero()
+        '''numero = acta_obj.get_numero()
         fecha = acta_obj.get_fecha()
         nombre = acta_obj.get_nombre_estudiante()
-        estado = acta_obj.get_estado()
+       #estado = acta_obj.get_estado()
         nota = acta_obj.get_nota_final()
         jurados = [acta_obj.get_jurado1().get_nombre(), acta_obj.get_jurado2().get_nombre()]
         director = acta_obj.get_director().get_nombre()
         reconocimiento = acta_obj.get_reconocimiento()
-        self._lista_actas.append([numero, fecha, nombre, estado, nota, jurados, director, reconocimiento])
+        self._lista_actas.append([numero, fecha, nombre, estado, nota, jurados, director, reconocimiento])'''
 
     def agregar_nuevo_criterio(self, identificador, descripcion, ponderacion): #Se añade el criterio a la lista Criterios
         nuevo_criterio = Director.agregar_criterio(identificador, descripcion, ponderacion)
@@ -91,10 +91,9 @@ class Controlador:
                 pass
 
     def agregar_detalles_criterios(self): #Objeto de tipo controlador que contiene una lista con los criterios
-        lista_criterios = self._criterios
         detalle_criterios = {}
-        for posicion in range(0, len(lista_criterios) - 1):
-            detalle_criterios[lista_criterios[posicion].get_identificador()] = DetalleCriterio(lista_criterios[posicion]) #Se asocia un detalleCriterio a un Criterio
+        for criterio in self._criterios:
+            detalle_criterios[criterio.get_identificador()] = DetalleCriterio(criterio) #Se asocia un detalleCriterio a un Criterio
         return detalle_criterios
 
     ##TODO: Definir correctmente el método
