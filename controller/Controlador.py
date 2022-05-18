@@ -18,7 +18,7 @@ class Controlador:
         self._lista_actas = []
 
     def _inicializar_criterios(self):
-        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2))
+        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 1.0))
         self._criterios.append(Criterio(1, "Diseño académico y científico del tema", 0.15))
         self._criterios.append(Criterio(2, "Cumplimiento de los objetivos propuetos", 0.1))
         self._criterios.append(Criterio(3, "Creatividad e innovación de las soluciones y desarrollos propuestos", 0.1))
@@ -33,6 +33,9 @@ class Controlador:
     def get_asistentes(self):
         return self._asistentes
 
+    def get_actas(self):
+        return self._actas
+
     def get_jurados(self):
         return self._jurados
 
@@ -46,28 +49,20 @@ class Controlador:
                     director, codirector, jurado1, jurado2, detalles_criterios)
         self._actas[acta_obj.get_numero()] = acta_obj  # Se agrega el acta al diccionario y se le asocia la llave
 
-        ##TODO:Esta aparte de abajo toca reformularla
-        '''numero = acta_obj.get_numero()
-        fecha = acta_obj.get_fecha()
-        nombre = acta_obj.get_nombre_estudiante()
-       #estado = acta_obj.get_estado()
-        nota = acta_obj.get_nota_final()
-        jurados = [acta_obj.get_jurado1().get_nombre(), acta_obj.get_jurado2().get_nombre()]
-        director = acta_obj.get_director().get_nombre()
-        reconocimiento = acta_obj.get_reconocimiento()
-        self._lista_actas.append([numero, fecha, nombre, estado, nota, jurados, director, reconocimiento])'''
 
     def agregar_nuevo_criterio(self, identificador, descripcion, ponderacion): #Se añade el criterio a la lista Criterios
         nuevo_criterio = Director.agregar_criterio(identificador, descripcion, ponderacion)
         self._criterios.append(nuevo_criterio)
 
-    def cambiar_criterio(self, identificador, descripcion, ponderacion):
-        for posicion in range(0, len(self._criterios)):
-            if self._criterios[posicion].get_identificador() == identificador: #Si corresponde al criterio deseado, cambie dicho criterio
-                Director.modificar_criterio(self._criterios[posicion], descripcion, ponderacion, identificador)
+    def validar_criterios(self):
+        suma_ponderaciones = 0
+        for criterio in self._criterios:
+            suma_ponderaciones = suma_ponderaciones + criterio.get_ponderacion()
+        return suma_ponderaciones
 
-    def ver_actas(self,acta): #TODO: Implementar método
-        numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento = Director.ver_acta(acta)
+
+    def ver_actas(self,acta, director): #TODO: Implementar método
+        numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento = director.ver_acta(acta)
         return numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento
 
         
