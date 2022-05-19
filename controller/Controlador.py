@@ -18,7 +18,7 @@ class Controlador:
         self._lista_actas = []
 
     def _inicializar_criterios(self):
-        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 1.0))
+        self._criterios.append(Criterio(0, "Desarrollo y profundidad en el tratamiento del tema", 0.2))
         self._criterios.append(Criterio(1, "Diseño académico y científico del tema", 0.15))
         self._criterios.append(Criterio(2, "Cumplimiento de los objetivos propuetos", 0.1))
         self._criterios.append(Criterio(3, "Creatividad e innovación de las soluciones y desarrollos propuestos", 0.1))
@@ -49,15 +49,14 @@ class Controlador:
                     director, codirector, jurado1, jurado2, detalles_criterios)
         self._actas[acta_obj.get_numero()] = acta_obj  # Se agrega el acta al diccionario y se le asocia la llave
 
-
     def agregar_nuevo_criterio(self, identificador, descripcion, ponderacion): #Se añade el criterio a la lista Criterios
         nuevo_criterio = Director.agregar_criterio(identificador, descripcion, ponderacion)
         self._criterios.append(nuevo_criterio)
 
     def validar_criterios(self):
-        suma_ponderaciones = 0
+        suma_ponderaciones = 0.0
         for criterio in self._criterios:
-            suma_ponderaciones = suma_ponderaciones + criterio.get_ponderacion()
+            suma_ponderaciones += float(criterio.get_ponderacion())
         return suma_ponderaciones
 
 

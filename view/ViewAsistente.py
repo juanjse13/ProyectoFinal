@@ -1,11 +1,16 @@
 from datetime import datetime
 
 
-def definir_layout_asistente(st, controller, asistente):
-    crear_acta_nueva(st, controller, asistente)
+def crear_acta_nueva(st, controller):
+    diccionario_asistentes = controller.get_asistentes()
+    box_asistente = st.selectbox(
+        'Seleccione el asistente que va a crear el acta',
+        diccionario_asistentes.keys()
+    )
+    asistente = diccionario_asistentes[box_asistente]
+    #Para mostrar la información del asistente seleccionado
+    st.write('Seleccionaste como asistente a:', asistente.get_nombre())
 
-
-def crear_acta_nueva(st, controller, asistente):
     fecha = datetime.today().strftime('%Y-%m-%d')
     periodo = st.text_input("Cual Periodo: XXXX-1 o XXXX-2?")
     autor = st.text_input("Autor")

@@ -1,7 +1,3 @@
-def definir_layout_jurado(st, controller, jurado, acta):
-    pass
-
-##TODO: Terminar método e implementarlo correctamente
 def calificar_tesis(st, controller, jurado):
     diccionario_actas = controller.get_actas() #Se trae el diccionario que contiene a todas las actas
     for llave1 in diccionario_actas.keys():
