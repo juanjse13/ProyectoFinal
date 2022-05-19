@@ -28,8 +28,23 @@ class Acta:
     def get_fecha(self):
         return self._fecha
 
+    def get_periodo(self):
+        return self._periodo
+
+    def get_autor(self):
+        return self._autor
+
+    def get_nombre_trabajo(self):
+        return self._nombre_trabajo
+
+    def get_modalidad(self):
+        return self._modalidad
+
     def get_nombre_estudiante(self):
         return self._nombre_estudiante
+
+    def get_identificacion_estudiante(self):
+        return self._identificacion_estudiante
 
     def get_nota_final(self):
         return self._nota_final
@@ -70,6 +85,9 @@ class Acta:
 
     def set_detalles_criterios(self, detalles_criterios):
         self._detalles_criterios = detalles_criterios
+
+    def set_estado_acta(self, estado_acta):
+        self._estado_acta = estado_acta
     
     def evaluar_acta(self):
         if self._estado_acta == "Vacio":

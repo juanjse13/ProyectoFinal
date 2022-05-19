@@ -37,7 +37,7 @@ class MainView:
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Asistentes(Crear Acta)', 'Jurados', 'Directores(Ver actas)', "Directores(Modificar criterio)", "Directores(Agregar criterio)"],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'Asistentes(Crear Acta)', 'Jurados(Calificar acta)', 'Directores(Ver actas)', "Directores(Modificar criterio)", "Directores(Agregar criterio)"],
                                            icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
 
@@ -55,6 +55,10 @@ class MainView:
             modificar_criterio(st, self.controller)
         elif self.menu_actual == "Directores(Agregar criterio)":
             adicionar_criterio(st, self.controller)
+        elif self.menu_actual == "Jurados(Calificar acta)":
+            calificar_tesis(st, self.controller)
+
+
 
 # Main call
 if __name__ == "__main__":

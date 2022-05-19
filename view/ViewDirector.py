@@ -28,7 +28,7 @@ def modificar_criterio(st, controller):
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
 
-
+#TODO: Falta adicionar criterio
 def adicionar_criterio(st, controller):
     identificador = len(controller.get_criterios()) #Permite dar un identificador al nuevo criterio
     descripcion = st.text_input("Descripción")
@@ -49,7 +49,7 @@ def adicionar_criterio(st, controller):
     return controller
 
 
-def observar_actas(st, controller): ##TODO: Terminar observar_actas
+def observar_actas(st, controller): ##TODO: Falta la parte de calular la nota final
     diccionario_directores = controller.get_directores() #Se traen a los directores
     box_director = st.selectbox(
         'Seleccione el director que desea ver las actas',
@@ -62,7 +62,7 @@ def observar_actas(st, controller): ##TODO: Terminar observar_actas
     diccionario_actas = controller.get_actas() #Se traen las actas
     for llave in diccionario_actas.keys():
         acta = diccionario_actas[llave]
-        if acta.get_director().get_nombre() == director.get_nombre(): #Si el acta tiene como director al seleccionado...
+        if acta.get_director().get_identificacion() == director.get_identificacion(): #Si el acta tiene como director al seleccionado...
             numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento = controller.ver_actas(acta, director)
             with st.expander("Actas creadas"):
                 st.write("Acta número: ", numero_acta)

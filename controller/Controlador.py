@@ -90,7 +90,18 @@ class Controlador:
             detalle_criterios[criterio.get_identificador()] = DetalleCriterio(criterio) #Se asocia un detalleCriterio a un Criterio
         return detalle_criterios
 
-    ##TODO: Definir correctmente el método
-    def evaluar_acta(self, lista_observaciones, lista_calificaciones, tipo_jurado, acta_a_calificar):
-        for calificacion in range (0, len(lista_calificaciones) - 1):
-            pass
+    def encontrar_nota_parcial_jurado(self, acta, numero_jurado):
+        diccionario_detalles_criterios = acta.get_detalles_criterios()
+        suma_notas = 0
+        for llave in diccionario_detalles_criterios.keys():
+            detalle_criterio = diccionario_detalles_criterios[llave]
+            if numero_jurado ==1: #Tiene que revisarse cuál de los dos jurados es para calcular la nota parcial del jurado
+                suma_notas += detalle_criterio.get_criterio().get_ponderacion() * detalle_criterio.get_calificacion1()
+            elif numero_jurado == 2:
+                suma_notas += detalle_criterio.get_criterio().get_ponderacion() * detalle_criterio.get_calificacion2()
+
+        return suma_notas #Devuelve la nota parcial final para lo que está calificando el jurado
+
+        #TODO: Falta ver la parte de estado del acta...más que todo para exportar
+
+
