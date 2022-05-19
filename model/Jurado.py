@@ -15,12 +15,11 @@ class Jurado(Usuario):
     def __init__(self,name,identificacion,password):
         Usuario.__init__(self,name,identificacion,password)
 
+    #TODO:Revisar esto
     def exportar_acta(self,acta):    
         acta.exportar() # Debe verificar estado del acta
         return acta
 
-    def evaluar(self,calificacion):
-        return calificacion
 
 
 

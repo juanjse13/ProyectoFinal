@@ -10,7 +10,7 @@ class Acta:
         self._autor = autor
         self._nombre_trabajo = nombre_trabajo
         self._modalidad = modalidad
-        self._estado_acta = "" #Puede ser: Vacio, En proceso o Terminado
+        self._estado_acta = "Vacio" #Puede ser: Vacio, En proceso o Terminado
         self._nombre_estudiante = nombre_estudiante
         self._identificacion_estudiante = identificacion_estudiante
         self._director = director
@@ -19,6 +19,8 @@ class Acta:
         self._jurado2 = jurado2
         self._observaciones_generales = ""
         self._detalles_criterios = detalles_criterios
+        self._nota_jurado1 = 0
+        self._nota_jurado2 = 0
         self._nota_final = 0
         self._reconocimiento = "" # Intervalo de la nota del acta
 
@@ -63,22 +65,12 @@ class Acta:
 
     def get_detalles_criterios(self):
         return self._detalles_criterios
-    
-    '''def verificador_estado(self):
-        conteo = 0
-        for i in self._detalles_criterios:
-            if self._detalles_criterios[i].calcular_nota_criterio() != 0:
-                conteo += 1
-        if conteo == len(self._detalles_criterios):
-            self._estado_acta = "Terminado"
-        elif 0 < conteo < len(self._detalles_criterios):
-            self._estado_acta = "Proceso"
-        elif conteo == 0:
-            self._estado_acta = "Vacio"'''
-    
-    def get_estado(self):
-        self.verificador_estado()
+
+    def get_estado_acta(self):
         return self._estado_acta
+
+    def set_estado_acta(self, estado_acta):
+        self._estado_acta = estado_acta
 
     def set_observaciones_generales(self, observaciones_generales):
         self._observaciones_generales = observaciones_generales
@@ -88,7 +80,22 @@ class Acta:
 
     def set_estado_acta(self, estado_acta):
         self._estado_acta = estado_acta
-    
+
+    def set_nota_jurado1(self, nota_jurado1):
+        self._nota_jurado1 = nota_jurado1
+
+    def set_nota_jurado2(self, nota_jurado2):
+        self._nota_jurado2 = nota_jurado2
+
+    def get_nota_jurado1(self):
+        return self._nota_jurado1
+
+    def get_nota_jurado2(self):
+        return self._nota_jurado2
+
+    def set_nota_final(self, nota_final):
+        self._nota_final = nota_final
+
     def evaluar_acta(self):
         if self._estado_acta == "Vacio":
             raise InvalidExportRecord("IS NOT POSSIBLE EXPORT CAUSE IS EMTY")
@@ -97,31 +104,17 @@ class Acta:
         elif self._estado_acta == "Terminado":
             self.exportar() # Añadir código para exportar a pdf
 
-    ##TODO: Revisar necesidad de este método
-    def recorrido_actas(self):
-        self.get_numero()
-        self.get_fecha()
-        self.get_nombre_estudiante()
-        self.get_estado()
-        self.get_nota_final()
-        self.get_director()
-        self.get_codirector()
-        self.get_jurado1()
-        self.get_jurado1()
-        self.get_jurado2()
-    
-    def calcular_reconocimiento(self):
-        if 4.5 <= self._nota_final <=5:
+    def set_reconocimiento(self, nota_final):
+        if 4.5 <= nota_final <=5:
             self._reconocimiento = "Alto"
-        elif 4.0 <= self._nota_final < 4.5:
+        elif 4.0 <= nota_final < 4.5:
             self._reconocimiento = "Normal"
-        elif 3.5 <= self._nota_final < 4:
+        elif 3.5 <= nota_final < 4:
             self._reconocimiento = "Basico"
-        elif self._nota_final < 3.5:
+        elif nota_final < 3.5:
             self._reconocimiento = "Rechazado"
-        
+
     def get_reconocimiento(self):
-        self.calcular_reconocimiento()
         return self._reconocimiento
     
     def exportar(self):

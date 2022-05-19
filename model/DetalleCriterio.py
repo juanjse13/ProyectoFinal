@@ -8,10 +8,6 @@ class DetalleCriterio:
         self._observacion2 = 0
         self._criterio = criterio
 
-    def calcular_nota_criterio(self):
-        nota =  ((self._calificacion1 + self._calificacion2) / 2) * self._criterio.get_ponderacion()
-        return nota
-
     def set_calificacion1(self, calificacion1):
         self._calificacion1 = calificacion1
 

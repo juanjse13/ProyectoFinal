@@ -60,29 +60,9 @@ class Controlador:
         return suma_ponderaciones
 
 
-    def ver_actas(self,acta, director): #TODO: Implementar método
+    def ver_actas(self,acta, director):
         numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento = director.ver_acta(acta)
         return numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento
-
-        
-    def ver_promedios(self): # Solo para las actas con estados Terminado
-        promedio = 0
-        lista_notas =[]
-        for i in self._actas:  ##TODO: Toca revisar esto...Acta no es una arreglo...es un diciconario...
-            if self._actas[i].get_estado() == "Terminado":
-                valores = self._actas[i].get_nota_final()
-                lista_notas.append(valores)
-                promedio = sum(lista_notas)/len(lista_notas)
-        return promedio
-    
-    def generar_dataFrame_actas(self):
-        df = pd.DataFrame(self._lista_actas,columns=["Numero de Acta","Fecha","Estudiante","Estado del Acta","Nota ponderada","Jurados","Director","Reconocimiento"])
-        return df
-    
-    def graficar_notas_actas(self): ##TODO: Toca revisar esto...Acta no es una arreglo...es un diciconario...
-        for i in self._actas:
-            if self._actas[i].get_estado() == "Terminado":
-                pass
 
     def agregar_detalles_criterios(self): #Objeto de tipo controlador que contiene una lista con los criterios
         detalle_criterios = {}
@@ -99,9 +79,31 @@ class Controlador:
                 suma_notas += detalle_criterio.get_criterio().get_ponderacion() * detalle_criterio.get_calificacion1()
             elif numero_jurado == 2:
                 suma_notas += detalle_criterio.get_criterio().get_ponderacion() * detalle_criterio.get_calificacion2()
+        #Para agregar la nota parcial en el acta dependiendo del jurado
+        if numero_jurado ==1:
+            acta.set_nota_jurado1(suma_notas)
+        elif numero_jurado == 1:
+            acta.set_nota_jurado2(suma_notas)
 
         return suma_notas #Devuelve la nota parcial final para lo que está calificando el jurado
 
-        #TODO: Falta ver la parte de estado del acta...más que todo para exportar
+    def cambiar_estado_acta(self, acta):
+        diccionario_detalles_criterios = acta.get_detalles_criterios()
+        for llave in diccionario_detalles_criterios.keys():
+            detalle_criterio = diccionario_detalles_criterios[llave]
+            if detalle_criterio.get_calificacion1() == 0 or detalle_criterio.get_calificacion2() == 0: #En este caso falta que uno de los dos jurados califique"
+                estado = "En proceso"
+            elif detalle_criterio.get_calificacion1() != 0 and detalle_criterio.get_calificacion2() != 0: #En este caso...ya existen las dos notas...acta terminada
+                estado = "Terminado"
+        return estado
+
+    def hallar_nota_final(self, acta):
+        nota_final = (acta.get_nota_jurado1() + acta.get_nota_jurado2()) / 2
+        acta.set_nota_final(nota_final)
+        acta.set_reconocimiento(nota_final) #Establece la evaluación cualitativa de la tesis
+        return nota_final
+
+    def exportar_acta(self):
+        pass
 
 

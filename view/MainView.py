@@ -4,7 +4,7 @@ from streamlit_option_menu import option_menu
 from controller.Controlador import Controlador
 from view.ViewAsistente import crear_acta_nueva
 from view.ViewDirector import modificar_criterio,  adicionar_criterio, observar_actas
-from view.ViewJurado import calificar_tesis
+from view.ViewJurado import calificar_tesis, exportar_acta
 
 
 class MainView:
@@ -37,7 +37,7 @@ class MainView:
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Asistentes(Crear Acta)', 'Jurados(Calificar acta)', 'Directores(Ver actas)', "Directores(Modificar criterio)", "Directores(Agregar criterio)"],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'Asistentes(Crear Acta)', 'Jurados(Calificar acta)',"Jurados(Exportar acta)", 'Directores(Ver actas)', "Directores(Modificar criterio)", "Directores(Agregar criterio)"],
                                            icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
 
@@ -57,6 +57,8 @@ class MainView:
             adicionar_criterio(st, self.controller)
         elif self.menu_actual == "Jurados(Calificar acta)":
             calificar_tesis(st, self.controller)
+        elif self.menu_actual == "Jurados(Exportar acta)":
+            exportar_acta(st, self.controller)
 
 
 

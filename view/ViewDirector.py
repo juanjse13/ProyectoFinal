@@ -49,7 +49,7 @@ def adicionar_criterio(st, controller):
     return controller
 
 
-def observar_actas(st, controller): ##TODO: Falta la parte de calular la nota final
+def observar_actas(st, controller):
     diccionario_directores = controller.get_directores() #Se traen a los directores
     box_director = st.selectbox(
         'Seleccione el director que desea ver las actas',
@@ -62,8 +62,9 @@ def observar_actas(st, controller): ##TODO: Falta la parte de calular la nota fi
     diccionario_actas = controller.get_actas() #Se traen las actas
     for llave in diccionario_actas.keys():
         acta = diccionario_actas[llave]
-        if acta.get_director().get_identificacion() == director.get_identificacion(): #Si el acta tiene como director al seleccionado...
+        if acta.get_director().get_identificacion() == director.get_identificacion() and acta.get_estado_acta() == "Terminado": #Si el acta tiene como director al seleccionado...
             numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento = controller.ver_actas(acta, director)
+            nota_final = controller.hallar_nota_final(acta)
             with st.expander("Actas creadas"):
                 st.write("Acta número: ", numero_acta)
                 st.write("Fecha: ", fecha)
@@ -72,7 +73,9 @@ def observar_actas(st, controller): ##TODO: Falta la parte de calular la nota fi
                 st.write("Nombre del jurado 1: ", jurado1.get_nombre())
                 st.write("Nombre del jurado 2: ", jurado2.get_nombre())
                 st.write("Nombre del director: ", director.get_nombre())
-                st.write("Reconocimiento: ", reconocimiento)
+                st.write("Reconocimiento: ", acta.get_reconocimiento())
+                st.write(acta.get_nota_jurado1())
+                st.write(acta.get_nota_jurado2())
 
 
 
