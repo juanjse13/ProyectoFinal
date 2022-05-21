@@ -1,5 +1,5 @@
-from model.Usuario import  Usuario
-from model.DetalleCriterio import DetalleCriterio
+from Usuario import  Usuario
+from DetalleCriterio import DetalleCriterio
 
 """
 Debe haber un atributo en las actas que permita saber el estado del acta,
@@ -19,6 +19,8 @@ class Jurado(Usuario):
     def exportar_acta(self,acta):    
         acta.exportar() # Debe verificar estado del acta
         return acta
+
+
 
 
 

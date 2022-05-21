@@ -1,6 +1,6 @@
 
-from model.Usuario import Usuario
-from model.Criterio import Criterio
+from Usuario import Usuario
+from Criterio import Criterio
 """
 La función ver_actas solo esta habilitada en el controlador, y se puede visualizar en la vista del Director, es decir
 solo se incluira esta función de ver todas las actas para la vista asignada para el director
@@ -28,6 +28,9 @@ class Director(Usuario):
     def agregar_criterio(self, identificador, descripcion, ponderacion):
         criterio = Criterio(identificador, descripcion, ponderacion)
         return criterio
+        
+
+        
         
 
         

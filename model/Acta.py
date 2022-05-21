@@ -1,4 +1,4 @@
-from model.exepciones_criterio import InvalidExportRecord, NotFoundUser
+from exepciones_criterio import InvalidExportRecord, NotFoundUser
 
 
 class Acta:
@@ -23,7 +23,7 @@ class Acta:
         self._nota_jurado2 = 0
         self._nota_final = 0
         self._reconocimiento = "" # Intervalo de la nota del acta
-
+    
     def get_numero(self):
         return self._numero
 
