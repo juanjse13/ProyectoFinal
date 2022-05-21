@@ -1,13 +1,13 @@
 
-from Usuario import Usuario
-from Criterio import Criterio
+from model.Usuario import Usuario
+from model.Criterio import Criterio
 """
 La función ver_actas solo esta habilitada en el controlador, y se puede visualizar en la vista del Director, es decir
 solo se incluira esta función de ver todas las actas para la vista asignada para el director
 """
 class Director(Usuario):
-    def __init__(self,nombre,contrasena,identificacion):
-        Usuario.__init__(self,nombre,contrasena,identificacion)
+    def __init__(self,nombre, identificacion):
+        Usuario.__init__(self,nombre, identificacion)
     
     def ver_acta(self, acta):
         numero_acta = acta.get_numero()

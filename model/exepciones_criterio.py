@@ -1,5 +1,3 @@
-
-
 class CriteryAssignationError(BaseException): # Valores invalidos en los atributos de los criterios
 
     def __init__(self,*args: object) -> None:

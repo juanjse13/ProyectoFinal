@@ -1,11 +1,9 @@
-
-import fpdf
-
 from fpdf import FPDF
+
 
 class PDF(FPDF):
     
-    def texts(self,name):
+    def texts(self, name):
         with open(name,'rb') as xy:
             txt = xy.read().decode('latin-1')
         self.set_xy(10.0,80.0)
@@ -13,7 +11,7 @@ class PDF(FPDF):
         self.set_font('Arial','',12)
         self.multi_cell(0,10,txt)
     
-    def titles(self,tittle):
+    def titles(self, tittle):
         self.set_xy(0.0,0.0)
         self.set_font('Arial','',16)
         self.set_text_color(220,50,50)

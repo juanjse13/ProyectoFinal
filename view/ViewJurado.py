@@ -1,5 +1,3 @@
-
-##TODO: Revisar las notas finales parciales que se obtienen...no se está guardando la nota del jurado2
 def calificar_tesis(st, controller):
     diccionario_jurados = controller.get_jurados() #Se trae el diccionario que contiene a los jurados
     diccionario_actas = controller.get_actas() #Se trae el diccionario que contiene a todas las actas

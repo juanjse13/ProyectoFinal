@@ -1,4 +1,4 @@
-from exepciones_criterio import CriteryAssignationError
+from model.exepciones_criterio import CriteryAssignationError
 
 class Criterio():
     def __init__(self, identificador, descripcion, ponderacion):

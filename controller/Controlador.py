@@ -1,12 +1,10 @@
 from msilib.schema import File
-from Criterio import Criterio
-from Asistente import Asistente
-from Jurado import Jurado
-from Director import Director
-from DetalleCriterio import DetalleCriterio
-from Acta import Acta
-from PDF_fpdf import PDF
-
+from model.Criterio import Criterio
+from model.Asistente import Asistente
+from model.Jurado import Jurado
+from model.Director import Director
+from model.DetalleCriterio import DetalleCriterio
+from model.PDF_fpdf import PDF
 
 
 class Controlador:
@@ -14,9 +12,9 @@ class Controlador:
         self._criterios = []
         self._inicializar_criterios() #inicializa los criterios
         self._actas = {}
-        self._asistentes = {1007827636 : Asistente("Juan", 1007827635, 123), 66825016 : Asistente("Juan", 66825016, 123), 93384031 : Asistente("Pepe", 93384031, 123)}
-        self._jurados = {123 : Jurado("Martin", 123, 123), 321 : Jurado("Alex", 3215, 123), 543 : Jurado("Alex", 543, 123)}
-        self._directores = {100786354 : Director("Francesco", 100786354, 123), 95485943 : Director("Luis", 95485943, 123)}
+        self._asistentes = {1007827636 : Asistente("Juan", 1007827635), 66825016 : Asistente("Juan", 66825016), 93384031 : Asistente("Pepe", 93384031)}
+        self._jurados = {123 : Jurado("Martin", 123), 321 : Jurado("Alex", 3215), 543 : Jurado("Alex", 543)}
+        self._directores = {100786354 : Director("Francesco", 100786354), 95485943 : Director("Luis", 95485943)}
         self._lista_actas = []
 
     def _inicializar_criterios(self):
@@ -52,8 +50,7 @@ class Controlador:
         self._actas[acta_obj.get_numero()] = acta_obj  # Se agrega el acta al diccionario y se le asocia la llave
 
     def agregar_nuevo_criterio(self, identificador, descripcion, ponderacion): #Se añade el criterio a la lista Criterios
-        director_temp = Director("",0,0)
-        nuevo_criterio = director_temp.agregar_criterio(identificador, descripcion, ponderacion)
+        nuevo_criterio = Director.agregar_criterio(identificador, descripcion, ponderacion)
         self._criterios.append(nuevo_criterio)
 
     def validar_criterios(self):
@@ -129,6 +126,6 @@ class Controlador:
         pdf.texts('Acta.txt')
         pdf.titles(f'ACTA IDENTIFICADA CON EL NÚMERO :  {acta.get_numero()}')
         pdf.set_author(acta.get_autor())
-        pdf.output('test.pdf','F')
+        pdf.output('Acta exportada.pdf','F')
 
 

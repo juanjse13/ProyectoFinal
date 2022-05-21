@@ -1,10 +1,11 @@
-from Usuario import Usuario
-from Acta import Acta
+from model.Usuario import Usuario
+from model.Acta import Acta
+
 
 class Asistente(Usuario):
-    def __init__(self,nombre,identificacion,contrasena):
+    def __init__(self, nombre, identificacion):
         self.actas_creadas = 0
-        Usuario.__init__(self,nombre,identificacion,contrasena)
+        Usuario.__init__(self, nombre, identificacion)
     
     def crear_nueva_acta(self, fecha, periodo, autor, nombre_trabajo, modalidad, nombre_estudiante, identificacion_estudiante,
         director, codirector, jurado1, jurado2, detalles_criterios):

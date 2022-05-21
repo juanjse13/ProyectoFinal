@@ -1,5 +1,4 @@
-from Usuario import  Usuario
-from DetalleCriterio import DetalleCriterio
+from model.Usuario import  Usuario
 
 """
 Debe haber un atributo en las actas que permita saber el estado del acta,
@@ -12,8 +11,8 @@ estado Exportado
 """
 # def mod_criterio(self,new_identificador,new_descripcion,new_ponderacion
 class Jurado(Usuario):
-    def __init__(self,name,identificacion,password):
-        Usuario.__init__(self,name,identificacion,password)
+    def __init__(self, nombre, identificacion):
+        Usuario.__init__(self, nombre, identificacion)
 
     #TODO:Revisar esto
     def exportar_acta(self,acta):    
