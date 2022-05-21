@@ -17,7 +17,8 @@ class Acta:
         self._codirector = codirector
         self._jurado1 = jurado1
         self._jurado2 = jurado2
-        self._observaciones_generales = ""
+        self._observaciones_generales1 = ""
+        self._observaciones_generales2 = ""
         self._detalles_criterios = detalles_criterios
         self._nota_jurado1 = 0
         self._nota_jurado2 = 0
@@ -72,8 +73,17 @@ class Acta:
     def set_estado_acta(self, estado_acta):
         self._estado_acta = estado_acta
 
-    def set_observaciones_generales(self, observaciones_generales):
-        self._observaciones_generales = observaciones_generales
+    def set_observaciones_generales1(self, observaciones_generales):
+        self._observaciones_generales1 = observaciones_generales
+
+    def set_observaciones_generales2(self, observaciones_generales):
+        self._observaciones_generales2 = observaciones_generales
+
+    def get_observaciones_generales1(self):
+        return self._observaciones_generales1
+
+    def get_observaciones_generales2(self):
+        return self._observaciones_generales2
 
     def set_detalles_criterios(self, detalles_criterios):
         self._detalles_criterios = detalles_criterios

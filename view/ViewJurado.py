@@ -53,6 +53,14 @@ def calificar_tesis(st, controller):
                     acta_deseada.get_detalles_criterios()[llave].set_calificacion2(float(nota))
                     acta_deseada.get_detalles_criterios()[llave].set_observacion2(observacion)
 
+            observaciones_generales = st.text_input("Observaciones generales")
+
+            if numero_jurado == 1:
+                acta_deseada.set_observaciones_generales1(observaciones_generales)
+            elif numero_jurado == 2:
+                acta_deseada.set_observaciones_generales2(observaciones_generales)
+
+
             enviado_btn = st.button(label = "Agregar evaluación", key= str(llave1))
 
     if enviado_btn:

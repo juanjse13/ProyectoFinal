@@ -46,10 +46,9 @@ def crear_acta_nueva(st, controller):
     director = diccionario_directores[box_director]
     st.write('Seleccionaste como director a:', director.get_nombre())
 
-    #TODO: revisar cómo se puede poner la opción de que no haya codirector
     box_codirector = st.selectbox(
-        'Seleccione al codirector',
-        diccionario_directores.keys()
+        label = 'Seleccione al codirector',
+        options = diccionario_directores.keys()
         )
     codirector = diccionario_directores[box_codirector]
     st.write('Seleccionaste como codirector a:', codirector.get_nombre())

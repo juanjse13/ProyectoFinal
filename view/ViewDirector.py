@@ -72,8 +72,9 @@ def observar_actas(st, controller):
                 st.write("Nombre del jurado 2: ", jurado2.get_nombre())
                 st.write("Nombre del director: ", director.get_nombre())
                 st.write("Reconocimiento: ", acta.get_reconocimiento())
-                st.write(acta.get_nota_jurado1())
-                st.write(acta.get_nota_jurado2())
+                st.write("Observaciones generales ", acta.get_observaciones_generales1())
+                st.write("Observaciones generales ", acta.get_observaciones_generales2())
+
 
 
 
