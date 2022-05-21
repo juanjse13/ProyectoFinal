@@ -1,10 +1,10 @@
 import streamlit as st
-from pydataxm.pydataxm import ReadDB
+#from pydataxm.pydataxm import ReadDB
 from streamlit_option_menu import option_menu
-from controller.Controlador import Controlador
-from view.ViewAsistente import crear_acta_nueva
-from view.ViewDirector import modificar_criterio,  adicionar_criterio, observar_actas
-from view.ViewJurado import calificar_tesis, exportar_acta
+from Controlador import Controlador
+from ViewAsistente import crear_acta_nueva
+from ViewDirector import modificar_criterio,  adicionar_criterio, observar_actas
+from ViewJurado import calificar_tesis, exportar_acta
 
 
 class MainView:
@@ -66,4 +66,3 @@ class MainView:
 if __name__ == "__main__":
     gui = MainView()
     gui.controlar_menu()
-

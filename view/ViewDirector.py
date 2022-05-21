@@ -1,6 +1,6 @@
 def validar_criterio(st, controller): #Método que va a permitir sacar un warning o no de ser el caso
     suma = controller.validar_criterios()
-    if suma == 1.0:
+    if  1.0 >= suma >= 0.999:
         st.write("Criterio modificado exitosamente")
     else:
         st.error("Las ponderaciones no dan el 100%")
@@ -9,8 +9,6 @@ def validar_criterio(st, controller): #Método que va a permitir sacar un warnin
 
 def modificar_criterio(st, controller):
     lista_criterios = controller.get_criterios() #Se trae la lista de criterios
-    lista_prueba = []
-    suma = 0
     for criterio in lista_criterios:
         st.write("Criterio ", criterio.get_identificador())
         descripcion = st.text_input( value = criterio.get_descripcion() , key = str(criterio.get_identificador()), label = "" )
@@ -62,7 +60,7 @@ def observar_actas(st, controller):
     diccionario_actas = controller.get_actas() #Se traen las actas
     for llave in diccionario_actas.keys():
         acta = diccionario_actas[llave]
-        if acta.get_director().get_identificacion() == director.get_identificacion() and acta.get_estado_acta() == "Terminado": #Si el acta tiene como director al seleccionado...
+        if acta.get_director().get_identificacion() == director.get_identificacion() and acta.get_estado_acta() == "Terminado": # Si el acta tiene como director al seleccionado...
             numero_acta, fecha, nombre_estudiante, nota_final, jurado1, jurado2, director, reconocimiento = controller.ver_actas(acta, director)
             nota_final = controller.hallar_nota_final(acta)
             with st.expander("Actas creadas"):
@@ -76,6 +74,8 @@ def observar_actas(st, controller):
                 st.write("Reconocimiento: ", acta.get_reconocimiento())
                 st.write(acta.get_nota_jurado1())
                 st.write(acta.get_nota_jurado2())
+
+
 
 
 

@@ -65,4 +65,3 @@ def crear_acta_nueva(st, controller):
     # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
-

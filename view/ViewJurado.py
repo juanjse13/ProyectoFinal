@@ -14,10 +14,10 @@ def calificar_tesis(st, controller):
 
     for llave1 in diccionario_actas.keys():
         acta = diccionario_actas[llave1]
-        if acta.get_jurado1().get_identificacion() == jurado.get_identificacion()  and acta.get_estado_acta != "Terminado":       #Se indica el número del jurado que es...
+        if acta.get_jurado1() == jurado and acta.get_estado_acta != "Terminado":       #Se indica el número del jurado que es...
             acta_deseada = acta
             numero_jurado = 1 #Sirve para identificar en qué parte se guardaran las calificaciones y las observaciones
-        elif acta.get_jurado2().get_identificacion() == jurado.get_identificacion() and acta.get_estado_acta != "Terminado":  #Se indica el número del jurado que es...
+        elif acta.get_jurado2() == jurado and acta.get_estado_acta != "Terminado":  #Se indica el número del jurado que es...
             acta_deseada = acta
             numero_jurado = 2 #Sirve para identificar en qué parte se guardaran las calificaciones y las observaciones
         else:
@@ -83,7 +83,7 @@ def exportar_acta(st, controller):
     actas_disponibles = {}
     for llave1 in diccionario_actas.keys():
         acta_deseada = diccionario_actas[llave1]
-        if (acta_deseada.get_jurado1().get_identificacion() == jurado.get_identificacion() or acta_deseada.get_jurado2().get_identificacion() == jurado.get_identificacion()) and acta.get_estado_acta != "Terminado":       #Se indica el número del jurado que es...
+        if (acta_deseada.get_jurado1().get_identificacion() == jurado.get_identificacion() or acta_deseada.get_jurado2().get_identificacion() == jurado.get_identificacion()) and acta_deseada.get_estado_acta != "Terminado":       #Se indica el número del jurado que es...
             actas_disponibles[acta_deseada.get_numero()] = acta_deseada ##Recorra todas las actas y vea cuáles podría exportar
 
     box_actas = st.selectbox(
@@ -99,9 +99,8 @@ def exportar_acta(st, controller):
     if enviado_btn:
         #TODO: Falta hacer la función que cree el pdf en controlador y que interactua con el modelo
         ##TODO: excepción que indique que si no hay ningún acta creada, no es posible exportar algo
-        controller.exportar_acta()
+        controller.exportar_acta(acta_a_exportar)
         st.write("El acta fue exportada")
-
 
 
 
