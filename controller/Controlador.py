@@ -1,9 +1,11 @@
-from model.Criterio import Criterio
-from model.Asistente import Asistente
-from model.Jurado import Jurado
-from model.Director import Director
-from model.DetalleCriterio import DetalleCriterio
-from model.Acta import Acta
+from msilib.schema import File
+from Criterio import Criterio
+from Asistente import Asistente
+from Jurado import Jurado
+from Director import Director
+from DetalleCriterio import DetalleCriterio
+from Acta import Acta
+from PDF_fpdf import PDF
 
 
 
@@ -50,13 +52,15 @@ class Controlador:
         self._actas[acta_obj.get_numero()] = acta_obj  # Se agrega el acta al diccionario y se le asocia la llave
 
     def agregar_nuevo_criterio(self, identificador, descripcion, ponderacion): #Se añade el criterio a la lista Criterios
-        nuevo_criterio = Director.agregar_criterio(identificador, descripcion, ponderacion)
+        director_temp = Director("",0,0)
+        nuevo_criterio = director_temp.agregar_criterio(identificador, descripcion, ponderacion)
         self._criterios.append(nuevo_criterio)
 
     def validar_criterios(self):
         suma_ponderaciones = 0.0
         for criterio in self._criterios:
             suma_ponderaciones += float(criterio.get_ponderacion())
+            print(" ", suma_ponderaciones, " ")
         return suma_ponderaciones
 
 
@@ -82,7 +86,7 @@ class Controlador:
         #Para agregar la nota parcial en el acta dependiendo del jurado
         if numero_jurado ==1:
             acta.set_nota_jurado1(suma_notas)
-        elif numero_jurado == 1:
+        elif numero_jurado == 2:
             acta.set_nota_jurado2(suma_notas)
 
         return suma_notas #Devuelve la nota parcial final para lo que está calificando el jurado
@@ -103,7 +107,28 @@ class Controlador:
         acta.set_reconocimiento(nota_final) #Establece la evaluación cualitativa de la tesis
         return nota_final
 
-    def exportar_acta(self):
-        pass
+    def exportar_acta(self,acta):
+        file = open("Acta.txt","w")
+        file.write(f'Numero del acta : {acta.get_numero()}')
+        file.write(f'Fecha : {acta.get_fecha()}')
+        file.write(f'Periodo : {acta.get_periodo()}')
+        file.write(f'Autor : {acta.get_autor()}')
+        file.write(f'Nombre del Trabajo : {acta.get_nombre_trabajo()}')
+        file.write(f'Modalidad : {acta.get_modalidad()}')
+        file.write(f'Estado del acta : {acta.get_estado_acta()}')
+        file.write(f'Nombre del Estudiante : {acta.get_nombre_estudiante()}')
+        file.write(f'Identificación del Estudiante : {acta.get_identificacion_estudiante()}')
+        file.write(f'Director : {acta.get_director().get_nombre()}')
+        file.write(f'Codirector : {acta.get_codirector().get_nombre()}')
+        file.write(f'Jurado : {acta.get_jurado1().get_nombre()}')
+        file.write(f'Jurado : {acta.get_jurado2().get_nombre()}')
+        file.write(f'Nota Final : {acta.get_nota_final()}')
+        file.write(f'Reconocimiento : {acta.get_reconocimiento()}')
+        pdf = PDF()
+        pdf.add_page()
+        pdf.texts('Acta.txt')
+        pdf.titles(f'ACTA IDENTIFICADA CON EL NÚMERO :  {acta.get_numero()}')
+        pdf.set_author(acta.get_autor())
+        pdf.output('test.pdf','F')
 
 
