@@ -33,6 +33,7 @@ class Jurado(Usuario):
         file.write(f'Jurado : {acta.get_jurado2().get_nombre()}')
         file.write(f'Nota Final : {acta.get_nota_final()}')
         file.write(f'Reconocimiento : {acta.get_reconocimiento()}')
+        file.write(f'Reconocimiento : {acta.get_reconocimiento()}')
         pdf = PDF()
         pdf.add_page()
         pdf.texts('Acta.txt')

@@ -104,8 +104,8 @@ class Controlador:
         acta.set_reconocimiento(nota_final) #Establece la evaluación cualitativa de la tesis
         return nota_final
 
-    def exportar_acta(self,acta):
-        Jurado.exportar_acta_PDF(acta)
+    def exportar_acta(self,acta, jurado):
+        jurado.exportar_acta_PDF(acta)
 
 
 

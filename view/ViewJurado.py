@@ -105,7 +105,7 @@ def exportar_acta(st, controller):
     if enviado_btn:
         #TODO: Falta hacer la función que cree el pdf en controlador y que interactua con el modelo
         ##TODO: excepción que indique que si no hay ningún acta creada, no es posible exportar algo
-        controller.exportar_acta(acta_a_exportar)
+        controller.exportar_acta(acta_a_exportar, jurado)
         st.write("El acta fue exportada")
 
 
