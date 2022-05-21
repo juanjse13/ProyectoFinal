@@ -16,7 +16,7 @@ class Jurado(Usuario):
     def __init__(self, nombre, identificacion):
         Usuario.__init__(self, nombre, identificacion)
 
-    def exportar_acta_PDF(self,acta):
+    def exportar_acta_PDF(self, acta):
         file = open("Acta.txt", "w")
         file.write(f'Numero del acta : {acta.get_numero()}')
         file.write(f'Fecha : {acta.get_fecha()}')

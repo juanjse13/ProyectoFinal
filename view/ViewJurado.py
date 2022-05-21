@@ -10,7 +10,9 @@ def calificar_tesis(st, controller):
     #Para mostrar la información del jurado seleccionado
     st.write('Seleccionaste como jurado a:', jurado.get_nombre())
 
+    contador_aux = 3 #Sirve para luego generar una llave única que identifique "observaciones_generales"
     for llave1 in diccionario_actas.keys():
+        contador_aux += 1
         acta = diccionario_actas[llave1]
         if acta.get_jurado1() == jurado and acta.get_estado_acta != "Terminado":       #Se indica el número del jurado que es...
             acta_deseada = acta
@@ -52,8 +54,7 @@ def calificar_tesis(st, controller):
                 elif numero_jurado == 2:
                     acta_deseada.get_detalles_criterios()[llave].set_calificacion2(float(nota))
                     acta_deseada.get_detalles_criterios()[llave].set_observacion2(observacion)
-
-            observaciones_generales = st.text_input("Observaciones generales")
+            observaciones_generales = st.text_input(label = "Observaciones generales", key = str(llave + contador + contador_aux))
 
             if numero_jurado == 1:
                 acta_deseada.set_observaciones_generales1(observaciones_generales)
@@ -105,6 +106,7 @@ def exportar_acta(st, controller):
     if enviado_btn:
         #TODO: Falta hacer la función que cree el pdf en controlador y que interactua con el modelo
         ##TODO: excepción que indique que si no hay ningún acta creada, no es posible exportar algo
+
         controller.exportar_acta(acta_a_exportar, jurado)
         st.write("El acta fue exportada")
 
