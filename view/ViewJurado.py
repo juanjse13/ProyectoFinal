@@ -1,3 +1,5 @@
+from model.PDF_fpdf import PDF
+
 def calificar_tesis(st, controller):
     diccionario_jurados = controller.get_jurados() #Se trae el diccionario que contiene a los jurados
     diccionario_actas = controller.get_actas() #Se trae el diccionario que contiene a todas las actas
@@ -107,9 +109,31 @@ def exportar_acta(st, controller):
         #TODO: Falta hacer la función que cree el pdf en controlador y que interactua con el modelo
         ##TODO: excepción que indique que si no hay ningún acta creada, no es posible exportar algo
 
-        controller.exportar_acta(acta_a_exportar, jurado)
+        exportar_acta_PDF(acta_a_exportar)
         st.write("El acta fue exportada")
 
-
-
-
+def exportar_acta_PDF(acta):
+    file = open("Acta.txt", "w")
+    file.write(f'Numero del acta : {acta.get_numero()}')
+    file.write(f'Fecha : {acta.get_fecha()}')
+    file.write(f'Periodo : {acta.get_periodo()}')
+    file.write(f'Autor : {acta.get_autor()}')
+    file.write(f'Nombre del Trabajo : {acta.get_nombre_trabajo()}')
+    file.write(f'Modalidad : {acta.get_modalidad()}')
+    file.write(f'Estado del acta : {acta.get_estado_acta()}')
+    file.write(f'Nombre del Estudiante : {acta.get_nombre_estudiante()}')
+    file.write(f'Identificación del Estudiante : {acta.get_identificacion_estudiante()}')
+    file.write(f'Director : {acta.get_director().get_nombre()}')
+    file.write(f'Codirector : {acta.get_codirector().get_nombre()}')
+    file.write(f'Jurado : {acta.get_jurado1().get_nombre()}')
+    file.write(f'Jurado : {acta.get_jurado2().get_nombre()}')
+    file.write(f'Nota Final : {acta.get_nota_final()}')
+    file.write(f'Reconocimiento : {acta.get_reconocimiento()}')
+    file.write(f'Reconocimiento : {acta.get_reconocimiento()}')
+    pdf = PDF()
+    pdf.add_page()
+    pdf.texts('Acta.txt')
+    pdf.titles(f'ACTA IDENTIFICADA CON EL NÚMERO :  {acta.get_numero()}')
+    pdf.set_author(acta.get_autor())
+    pdf.output('Acta exportada.pdf', 'F')
+    return acta
