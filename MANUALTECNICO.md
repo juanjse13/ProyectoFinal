@@ -1,19 +1,19 @@
 # **Manual técnico del Sistema de Calificación de Tesis**
 ## Dirigido a desarrolladores 
 ###### Nota: El sistema está basado en el modelo MVC(Modelo-Vista-Controlador) y utiliza pruebas unitarias y excepciones como buena práctica de la ingeniería de software.
-### El sistema planteado consiste en un sistema información que facilite la calificación de los trabajos de grado de maestría cuando los estudiantes realizan su sustentación pública.
+### El sistema planteado consiste en un sistema de información que facilita la calificación de los trabajos de grado de maestría cuando los estudiantes realizan su sustentación pública.
 ### A continuación, se explican cada uno de los parámetros para implementar el modelo MVC en el sistema de información:
 ## Modelo
 #### Se definieron las clases que permitieron "modelar" a lo usuarios que tienen acceso al sistema y a las interacciones entre ellos. Así, se definieron las clases Acta, Asistente, Criterio, DetalleCriterio, Director, Jurado y Usuario. 
 #### A continuación, se mencionan algunos criterios de diseño que se tomaron en cuenta:
 <ol>
-<li>Se cuenta con una clase Usuario que funciona como clase padre para las clases Jurado, Director y Asistente. Esto, con el fin de implementar atributos protegidos paa que hereden las clases hijas.</li>
+<li>Se cuenta con una clase Usuario que funciona como clase padre para las clases Jurado, Director y Asistente. Esto, con el fin de implementar atributos protegidos que hereden las clases hijas.</li>
 <li>Se implementa una clase Detalle criterio con el ánimo de que en ella se guarden los datos correspondientes a las calificaciones de cada criterio. Como dicha información es dinámica, se opta por separar las interacciones estáticas de los criterios de las dinámicas; es decir, separar la definición del criterio(ponderación, descripción e indentificador) de la información correspondiente a las calificaciones. </li>
 <li>Cada instancia de clase la clase Acta tiene un diccionario llamado "detalles_criterios"  el  cual contiene distintas intancias de tipo Detalle Criterio y es aquí donde se guardan las calificaciones n°1 y n°2 para cada uno de los criterios.</li>
 </ol>
 
 ## Controlador
-#### El controlador interactúa con el modelo y la vista y cuenta con diversos métodos que permiten realizar esto. A continuación, se presentan decripciones de algunos de dichos métodos:
+#### El controlador interactúa con el modelo y la vista y cuenta con diversos métodos que permiten realizar esto. A continuación, se presentan descripciones de algunos de dichos métodos:
 <ol>
 <li>Se cuenta con el método agregar_detalles_criterios que permite asociar criterios particulares a diferentes instancias Detalle criterio; luego, dicho diccionario entra como parámetro al momento de agregar un acta nueva.</li>
 <li>El método inicializar_criterios permite definir unos criterios predeterminados cada vez que inicia el sistema.</li>
@@ -36,8 +36,8 @@
 
 ## Otros temas de interés:
 ### Excepciones y pruebas unitarias
-#### El sistema implementa excepciones y pruebas unitarias para mejorar la interacción con el usuario. Las pruebas unitarias implentadas pueden verse en la carpeta **test**. 
-###### Nota: es importante mencionar que no se implementaron pruebas unitarias para todos los métodos debido a que se requería un conocimiento más profuno del Framework.
+#### El sistema implementa excepciones y pruebas unitarias para mejorar la interacción con el usuario. Las pruebas unitarias implementadas pueden verse en la carpeta **test**. 
+###### Nota: es importante mencionar que no se implementaron pruebas unitarias para todos los métodos debido a que se requería un conocimiento más profundo del Framework.
 ### Modelación del sistema 
 #### A continuación puede encontrar el link que permite observar el diagrama UML planteado para modelar el sistema: https://drive.google.com/file/d/1S_JvWkAoW4_CJKJq_c5AR-a1QxN4L4f1/view?usp=sharing 
 
