@@ -10,13 +10,15 @@ def crear_acta_nueva(st, controller):
     asistente = diccionario_asistentes[box_asistente]
     #Para mostrar la información del asistente seleccionado
     st.write('Seleccionaste como asistente a:', asistente.get_nombre())
-
     fecha = datetime.today().strftime('%Y-%m-%d')
-    periodo = st.text_input("Cual Periodo: XXXX-1 o XXXX-2?")
-    autor = st.text_input("Autor")
-    nombre_estudiante = st.text_input("Nombre del estudiante")
-    identificacion_estudiante = st.text_input("Cédula del estudiante")
-    nombre_trabajo = st.text_input("Nombre del trabajo")
+    try:
+        periodo = st.text_input("Cual Periodo: XXXX-1 o XXXX-2?")
+        autor = st.text_input("Autor")
+        nombre_estudiante = st.text_input("Nombre del estudiante")
+        identificacion_estudiante = st.text_input("Cédula del estudiante")
+        nombre_trabajo = st.text_input("Nombre del trabajo")
+    except ValueError:
+        st.error("No es posible asignar")
     modalidad = st.selectbox(
         '¿Cuál es su tipo de tesis?',
         ('Investigación', 'Aplicado'))
